@@ -53,8 +53,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         TabBar(
                           labelColor: ColorsParcelo.PrimaryTextColor,
                           labelStyle: TextStyle(
-                            fontSize: 14,
+                            fontSize: 15,
                             fontWeight: FontWeight.w500,
+                            fontFamily: 'Asap'
                           ),
                           labelPadding: EdgeInsets.only(right: 10),
                           indicator: UnderlineTabIndicator(

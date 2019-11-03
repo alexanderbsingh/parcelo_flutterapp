@@ -5,12 +5,11 @@ import 'package:parcelo/profile.dart';
 import 'home.dart';
 import 'package:parcelo/search.dart';
 
-import 'package:parcelo/colorsParcelo.dart';
-
 void main(){
   runApp(MaterialApp(
     title: 'Parcelo',
-    home: MainView()
+      theme: ThemeData(fontFamily: 'Asap'),
+      home: MainView()
   ));
 }
 
