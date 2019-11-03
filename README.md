@@ -1,4 +1,4 @@
-# parcelo
+# Parcelo
 
 Delivery on demand
 
