@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:parcelo/colorsParcelo.dart';
 import 'package:parcelo/customAnimation/slideBottomRoute.dart';
 import 'package:parcelo/home/delivery.dart';
-import 'package:parcelo/search.dart';
+import 'package:parcelo/search/search.dart';
 
+import '../argParcelo.dart';
 import 'filterHome.dart';
 import 'main.dart';
 import 'main.dart';
@@ -12,7 +13,7 @@ Widget homeToolbar(BuildContext context) {
   return Row(
     children: <Widget>[
       Padding(
-        padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+        padding: EdgeInsets.only(left: ArgParcelo.margin),
         child: GestureDetector(
           onTap: () {
             print('pressed, profile');
@@ -45,7 +46,7 @@ Widget homeToolbar(BuildContext context) {
           )
       ),
       Padding(
-        padding: const EdgeInsets.only(left:5, right: 20),
+        padding: const EdgeInsets.only(left: 5, right: ArgParcelo.margin),
         child: GestureDetector(
             onTap: () {
               print('pressed, search');

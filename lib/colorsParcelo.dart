@@ -6,5 +6,4 @@ class ColorsParcelo {
   static const LightGreyColor =  Color(0xFFEEEEEE);
   static const PrimaryTextColor =  Color(0xFF141414);
   static const SecondaryTextColor =  Color(0xFF5A5A5A);
-
 }

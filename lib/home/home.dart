@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../argParcelo.dart';
 import 'browse.dart';
 import 'delivery.dart';
 import 'homeToolbar.dart';
@@ -48,7 +49,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     child: Row(
                       children: <Widget>[
                         Padding(
-                          padding: EdgeInsets.only(right: 20),
+                          padding: EdgeInsets.only(right: ArgParcelo.margin),
                         ),
                         TabBar(
                           labelColor: ColorsParcelo.PrimaryTextColor,
@@ -79,6 +80,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
                   Container(
                     height: 10000,
+                    padding: EdgeInsets.only(left: 10, right: 10),
                     child: TabBarView(
                         controller: _tabController,
                         children: [
@@ -87,8 +89,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         ]
                     ),
                   ),
-
-
                 ],
               ),
             )

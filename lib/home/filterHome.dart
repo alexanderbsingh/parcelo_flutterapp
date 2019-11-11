@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../argParcelo.dart';
 import '../colorsParcelo.dart';
 
 class FilterHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       primary: false,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -15,7 +17,7 @@ class FilterHome extends StatelessWidget {
       body: Column(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(left: 20),
+            padding: const EdgeInsets.only(left: ArgParcelo.margin),
             child: Row(
               children: <Widget>[
                 GestureDetector(
@@ -36,7 +38,6 @@ class FilterHome extends StatelessWidget {
           Expanded(
             child: Container(
               alignment: Alignment.center,
-              color: Colors.white10,
               child: Text(
                 'Filter Home',
               ),
