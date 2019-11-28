@@ -5,7 +5,10 @@ class Delivery extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: ColorsParcelo.PrimaryColor,
+      height: 100,
+      alignment: Alignment.topCenter,
+      padding: EdgeInsets.only(top: 50),
+      child: Text('Delivery'),
     );
   }
 }

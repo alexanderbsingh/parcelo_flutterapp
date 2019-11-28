@@ -54,7 +54,7 @@ Widget profileTop(BuildContext context) {
                 alignment: Alignment.center,
                 width: 52,
                 height: 20,
-                decoration: new BoxDecoration(
+                decoration: BoxDecoration(
                     color: ColorsParcelo.PrimaryColor,
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.circular(10)

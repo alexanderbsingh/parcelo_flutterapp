@@ -42,7 +42,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               child: ListView(
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.only(top: 10),
+                    padding: EdgeInsets.only(top: 15),
                   ),
                   Container(
                     height: 40,
@@ -80,7 +80,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
                   Container(
                     height: 10000,
-                    padding: EdgeInsets.only(left: 10, right: 10),
+                    padding: EdgeInsets.only(left: 0, right: 0),
                     child: TabBarView(
                         controller: _tabController,
                         children: [
