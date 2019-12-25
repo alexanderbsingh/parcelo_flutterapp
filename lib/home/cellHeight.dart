@@ -14,7 +14,7 @@ double CellHeight(String type) {
 
     default:
       {
-        return 100;
+        return 180;
       }
   }
 

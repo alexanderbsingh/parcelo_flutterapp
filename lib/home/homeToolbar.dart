@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:parcelo/colorsParcelo.dart';
 import 'package:parcelo/customAnimation/slideBottomRoute.dart';
-import 'package:parcelo/home/delivery.dart';
-import 'package:parcelo/search/search.dart';
 
 import '../argParcelo.dart';
 import 'filterHome.dart';
-import 'main.dart';
 import 'main.dart';
 
 Widget homeToolbar(BuildContext context) {

@@ -6,7 +6,7 @@ import '../../colorsParcelo.dart';
 
 Widget topCell(BuildContext context, String titleHeader, titleSubHeader) {
   return Padding(
-    padding: const EdgeInsets.only(top: 0, bottom: 10, right: 10),
+    padding: const EdgeInsets.only(top: 0, bottom: 10, right: 12),
     child: Container(
       height: 218,
       width: 340,

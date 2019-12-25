@@ -8,8 +8,8 @@ import 'cellHeight.dart';
 class Browse extends StatelessWidget {
   var headers = ['Lorem ipsum,', 'Lorem ipsum,', 'Lorem ipsum,', 'Lorem ipsum,'];
   var subHeaders = ['dolor sit amet'];
-  var typeHeader = ['', 'Recent', 'Only on Parcelo', 'Only on Parcelo'];
-  var typeList = ['top', 'product', '', ''];
+  var typeHeader = ['', 'Recent', 'Only on Parcelo'];
+  var typeList = ['top', 'product', ''];
 
   @override
   Widget build(BuildContext context) {
@@ -39,31 +39,28 @@ class Browse extends StatelessWidget {
                   if(typeList[position1] == 'top') {
                     if(position2 != 0) {
                       return topCell(context, headers[0], subHeaders[0]);
-                    } else {
-                      return Padding(padding: EdgeInsets.only(left: 15),);
-                    }
+                    } else { return Padding(padding: EdgeInsets.only(left: 15),); }
 
                   } else if(typeList[position1] == 'product'){
                     if(position2 != 0) {
-                      return productCell(context, typeHeader[0]);
-                    } else {
-                      return Padding(padding: EdgeInsets.only(left: 15),);
-                    }
+                      return productCell(context, typeHeader[0], position1, position2);
+                    } else { return Padding(padding: EdgeInsets.only(left: 15),); }
 
                   } else {
                     if(position2 != 0) {
                       return Padding(
-                        padding: const EdgeInsets.only(right: 5, top: 5, bottom: 10),
+                        padding: const EdgeInsets.only(right: 10, top: 5, bottom: 10),
                         child: Container(
-                          height: 150,
-                          width: 100,
-                          color: ColorsParcelo.LightGreyColor,
+                          height: 160,
+                          width: 300,
+                          decoration: BoxDecoration(
+                              color: ColorsParcelo.LightGreyColor,
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(ArgParcelo.cornerRadius)
+                          ),
                         ),
-                      );                    } else {
-                      return Padding(padding: EdgeInsets.only(left: 15),);
-                    }
-
-
+                      );
+                    } else { return Padding(padding: EdgeInsets.only(left: 15),); }
                   }
                 },
                 itemCount: 4,
@@ -71,7 +68,6 @@ class Browse extends StatelessWidget {
             ),
           ],
         );
-
       },
       itemCount: typeList.length,
     );
