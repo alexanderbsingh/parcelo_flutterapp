@@ -9,6 +9,7 @@ void main(){
   runApp(MaterialApp(
     title: 'Parcelo',
       theme: ThemeData(fontFamily: 'Asap'),
+      
       home: MainView()
   ));
 }

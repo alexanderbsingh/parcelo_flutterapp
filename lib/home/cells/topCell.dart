@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import '../../argParcelo.dart';
 import '../../colorsParcelo.dart';
 
-Widget topCell(BuildContext context, String titleHeader, titleSubHeader) {
+Widget topCell() {
   return Padding(
     padding: const EdgeInsets.only(top: 0, bottom: 10, right: 12),
     child: Container(
@@ -20,7 +20,7 @@ Widget topCell(BuildContext context, String titleHeader, titleSubHeader) {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            titleHeader,
+            'titleHeader',
             style: TextStyle(
                 fontSize: ArgParcelo.largeHeader,
                 fontWeight: FontWeight.w600,
@@ -28,7 +28,7 @@ Widget topCell(BuildContext context, String titleHeader, titleSubHeader) {
             ),
           ),
           Text(
-            titleSubHeader,
+            'titleSubHeader',
             style: TextStyle(
                 fontSize: ArgParcelo.subHeader,
                 color: ColorsParcelo.PrimaryColor,

@@ -1,18 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:parcelo/colorsParcelo.dart';
+import 'package:parcelo/home/browseContent.dart';
 import 'package:parcelo/home/cells/productCell.dart';
+import 'package:parcelo/home/cells/shopCell.dart';
 import 'package:parcelo/home/cells/topCell.dart';
+import 'package:parcelo/models/product.dart';
+import 'package:parcelo/network/services/product_service.dart';
+import 'package:parcelo/whichService.dart';
 import '../argParcelo.dart';
 import 'cellHeight.dart';
 
-class Browse extends StatelessWidget {
+import '../network/services/shop_service.dart';
+import 'package:parcelo/models/shop.dart';
+
+class Browse extends StatefulWidget {
+  @override
+  _BrowseState createState() => _BrowseState();
+}
+
+class _BrowseState extends State<Browse> {
   var headers = ['Lorem ipsum,', 'Lorem ipsum,', 'Lorem ipsum,', 'Lorem ipsum,'];
+
   var subHeaders = ['dolor sit amet'];
+
   var typeHeader = ['', 'Recent', 'Only on Parcelo'];
-  var typeList = ['top', 'product', ''];
+
+  var typeList = ['top', 'product', 'shop'];
+
+  List<int> itemCount;
+
+  List<Shop> shops;
+
+  List<Product> products;
+
+  void calcItemCount() async {
+    shops =  await fetchShops();
+    products = await fetchProducts();
+
+    itemCount = [3, products.length, shops.length];
+  } 
 
   @override
   Widget build(BuildContext context) {
+    //calcItemCount();
+
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, position1) {
@@ -33,38 +64,19 @@ class Browse extends StatelessWidget {
 
             Container(
               height: CellHeight(typeList[position1]),
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, position2) {
-                  if(typeList[position1] == 'top') {
-                    if(position2 != 0) {
-                      return topCell(context, headers[0], subHeaders[0]);
-                    } else { return Padding(padding: EdgeInsets.only(left: 15),); }
-
-                  } else if(typeList[position1] == 'product'){
-                    if(position2 != 0) {
-                      return productCell(context, typeHeader[0], position1, position2);
-                    } else { return Padding(padding: EdgeInsets.only(left: 15),); }
-
-                  } else {
-                    if(position2 != 0) {
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 10, top: 5, bottom: 10),
-                        child: Container(
-                          height: 160,
-                          width: 300,
-                          decoration: BoxDecoration(
-                              color: ColorsParcelo.LightGreyColor,
-                              shape: BoxShape.rectangle,
-                              borderRadius: BorderRadius.circular(ArgParcelo.cornerRadius)
-                          ),
-                        ),
-                      );
-                    } else { return Padding(padding: EdgeInsets.only(left: 15),); }
+              child: FutureBuilder(
+                future: whichService(typeList[position1]),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return browseContent(context, snapshot.data, typeList[position1]);
+                    
+                  } else if (snapshot.connectionState == ConnectionState.none) {
+                    return null;
                   }
                 },
-                itemCount: 4,
-              ),
+              )
+              
+              
             ),
           ],
         );

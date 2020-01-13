@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:parcelo/colorsParcelo.dart';
 import 'package:parcelo/customAnimation/slideBottomRoute.dart';
+import 'package:parcelo/customWidget/customExpanded.dart';
 
 import '../argParcelo.dart';
 import 'filterHome.dart';
@@ -26,11 +27,8 @@ Widget homeToolbar(BuildContext context) {
           ),
         ),
       ),
-      Expanded(
-        child: Divider(
-          color: Colors.transparent,
-        ),
-      ),
+      customExpanded(),
+
       GestureDetector(
           onTap: () {
             print('pressed, filter home');

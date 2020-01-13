@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parcelo/argParcelo.dart';
+import 'package:parcelo/customWidget/customExpanded.dart';
 
 import '../colorsParcelo.dart';
 
@@ -39,9 +40,8 @@ Widget profileSpecificList(BuildContext context, String title, String descriptio
             ],
           ),
 
-          Expanded(
-            child: Divider(color: Colors.transparent,),
-          ),
+          customExpanded(),
+
 
           Visibility(
             visible: showArrow,
