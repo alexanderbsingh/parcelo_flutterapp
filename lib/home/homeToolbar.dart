@@ -25,8 +25,7 @@ Widget homeToolbar(BuildContext context) {
                 image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-oF9WRTkUmgbMG19EZBHWE6cLNOCsUYKq1xN-y4T7B5WaEa7V&s'),
                 fit: BoxFit.cover
               ),
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(37)
+              shape: BoxShape.circle,
           ) ,
           ),
         ),

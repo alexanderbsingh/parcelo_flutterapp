@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parcelo/home/main.dart';
 
-import '../argParcelo.dart';
 import '../colorsParcelo.dart';
 
 Widget profileTop(BuildContext context) {
@@ -9,23 +8,23 @@ Widget profileTop(BuildContext context) {
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
-      Padding(
-        padding: const EdgeInsets.only(left: ArgParcelo.margin, top: ArgParcelo.margin),
-        child: Container(
-          alignment: Alignment.topLeft,
-          width: 130.0,
-          height: 130.0,
-          decoration: new BoxDecoration(
-            color: ColorsParcelo.LightGreyColor,
-            shape: BoxShape.circle,
+      Container(
+        alignment: Alignment.topLeft,
+        width: 130.0,
+        height: 130.0,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-oF9WRTkUmgbMG19EZBHWE6cLNOCsUYKq1xN-y4T7B5WaEa7V&s'),
+            fit: BoxFit.cover
           ),
+        shape: BoxShape.circle,
         ),
       ),
 
       Expanded(
         child: Container(
           height: 150,
-          padding: EdgeInsets.only(right: 10, top: 3),
+          padding: EdgeInsets.only(top: 3),
           alignment: Alignment.centerRight,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,7 +39,7 @@ Widget profileTop(BuildContext context) {
                 ),
               ),
               Text(
-                'email@email.com',
+                'alexander@parcelo.se',
                 style: TextStyle(
                   fontStyle: FontStyle.normal,
                   fontSize: 13,
@@ -73,19 +72,16 @@ Widget profileTop(BuildContext context) {
         ),
       ),
 
-      Padding(
-        padding: const EdgeInsets.only(right: 10),
-        child: GestureDetector(
-            onTap: () {
-              print('pressed, back');
-              MainViewState.pageController.animateToPage(1, duration: Duration(milliseconds: 200), curve: Curves.linear);
-            },
-            child: Icon(
-              Icons.keyboard_arrow_right,
-              size: 35,
-              color: ColorsParcelo.PrimaryTextColor,
-            )
-        ),
+      GestureDetector(
+          onTap: () {
+            print('pressed, back');
+            MainViewState.pageController.animateToPage(1, duration: Duration(milliseconds: 200), curve: Curves.linear);
+          },
+          child: Icon(
+            Icons.keyboard_arrow_right,
+            size: 35,
+            color: ColorsParcelo.PrimaryTextColor,
+          )
       ),
     ],
   );

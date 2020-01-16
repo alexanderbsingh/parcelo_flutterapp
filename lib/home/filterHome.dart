@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:parcelo/customWidget/specificList.dart';
 
 import '../argParcelo.dart';
 import '../colorsParcelo.dart';
@@ -15,6 +16,7 @@ class FilterHome extends StatelessWidget {
         elevation: 0,
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(left: ArgParcelo.margin),
@@ -35,14 +37,39 @@ class FilterHome extends StatelessWidget {
             ),
           ),
 
-          Expanded(
-            child: Container(
-              alignment: Alignment.center,
-              child: Text(
-                'Filter Home',
-              ),
+          Padding(
+            padding: EdgeInsets.only(left: ArgParcelo.margin, right: ArgParcelo.margin, top: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  'Filter yout feed',
+                  style: TextStyle(
+                    fontSize: ArgParcelo.largeHeader,
+                    fontWeight: FontWeight.w600,
+                    color: ColorsParcelo.PrimaryTextColor
+                  )
+                ),
+
+                Padding(
+                  padding: EdgeInsets.only(top: 5, bottom: 10),
+                  child: Text("It's great to be picky. Follow what you like and make the feed yours.",
+                    style: TextStyle(
+                      color: ColorsParcelo.SecondaryTextColor,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400
+                    ),
+                  ),
+                ),
+
+                specificList(context, 'Shops', 'Your favourite shops', true, ColorsParcelo.PrimaryTextColor),
+                specificList(context, 'Categories', 'Your favourite Categories', true, ColorsParcelo.PrimaryTextColor),
+                specificList(context, 'Price range', 'Get products recomended in your price range', true, ColorsParcelo.PrimaryTextColor),
+
+
+              ],
             ),
-          ),
+          )
         ],
       ),
     );
