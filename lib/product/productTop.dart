@@ -1,20 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:parcelo/customWidget/customExpanded.dart';
-import 'package:parcelo/product/productToolbar.dart';
+import 'package:parcelo/models/product.dart';
 import 'package:parcelo/product/smallPicture.dart';
 
 import '../argParcelo.dart';
 import '../colorsParcelo.dart';
 
-Widget productTop(BuildContext context, int pos1, int pos2) {
+Widget productTop(BuildContext context, Product product) {
   return Stack(
     alignment: Alignment.topLeft,
     children: <Widget>[
       Container(
-      height: MediaQuery.of(context).size.height * 0.6,
-      color: ColorsParcelo.LightGreyColor,
+        padding: EdgeInsets.only(bottom: 20, top: 40),
+        height: MediaQuery.of(context).size.height * 0.6,
+        color: ColorsParcelo.LightGreyColor,
+        child: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(product.images[0]),
+                fit: BoxFit.fitHeight
+              ),
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(ArgParcelo.cornerRadius)
+            ),
         ),
-      Container(
+      ),
+      
+      /*Container(
         height: MediaQuery.of(context).size.height * 0.6,
         child: Column(
           children: <Widget>[
@@ -43,7 +55,7 @@ Widget productTop(BuildContext context, int pos1, int pos2) {
             ),
           ],
         ),
-      ),
+      ),*/
     ],
     );
 }

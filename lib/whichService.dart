@@ -5,12 +5,12 @@ import 'network/services/shop_service.dart';
 
 Future whichService(String type) async{
   if (type == 'top') {
-    return null;
+    return ['Lorem ipsum,', 'Lorem ipsum,'];
   } else if (type == 'product') {
     return await fetchProducts();
   } else if (type == 'shop') {
     return await fetchShops();
   } else {
-    return null;
+    return ['Lorem ipsum,', 'Lorem ipsum,', 'Lorem ipsum,', 'Lorem ipsum,'];
   }
 }

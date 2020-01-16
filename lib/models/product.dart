@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart' as prefix0;
+
 class Product {
   final String id;
   final String slug;
@@ -44,16 +46,5 @@ class Product {
       updatedAt: json['updatedAt'],
       prices: json['prices'],
     );
-  }
-}
-
-class Products {
-  final Product productList;
-
-  Products({this.productList});
-
-  factory Products.fromJson(Map<String, dynamic> parsedJson) {
-    return Products(
-        productList: Product.fromJson(parsedJson['Product']));
   }
 }

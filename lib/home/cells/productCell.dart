@@ -11,7 +11,7 @@ Widget productCell(BuildContext context, Product product) {
   return GestureDetector(
       onTap: () {
         print('pressed, product');
-        Navigator.push(context, SlideBottomRoute(page: ProductView(pos1: 1, pos2: 1,)));
+        Navigator.push(context, SlideBottomRoute(page: ProductView(product: product)));
       },
       child: Padding(
       padding: const EdgeInsets.only(top: 10, right: 10),
@@ -23,7 +23,7 @@ Widget productCell(BuildContext context, Product product) {
           width: 125,
           decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage('https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MWYK2?wid=1144&hei=1144&fmt=jpeg&qlt=80&op_usm=0.5,0.5&.v=1567304928359'),
+                image: NetworkImage(product.images[0]),
                 fit: BoxFit.fitHeight
               ),
               shape: BoxShape.rectangle,
@@ -56,7 +56,7 @@ Widget productCell(BuildContext context, Product product) {
               alignment: Alignment.bottomRight,
               padding: EdgeInsets.only(right: 4),
               width: 125,
-              child: Text('100 kr',
+              child: Text('10 000 kr',
                 style: TextStyle(
                     color: ColorsParcelo.PrimaryColor,
                     fontWeight: FontWeight.w600,

@@ -21,9 +21,13 @@ Widget homeToolbar(BuildContext context) {
             height: 37,
             width: 37,
             decoration: BoxDecoration(
-                color: ColorsParcelo.LightGreyColor,
-                borderRadius: BorderRadius.circular(18.5)
-            ),
+              image: DecorationImage(
+                image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-oF9WRTkUmgbMG19EZBHWE6cLNOCsUYKq1xN-y4T7B5WaEa7V&s'),
+                fit: BoxFit.cover
+              ),
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(37)
+          ) ,
           ),
         ),
       ),

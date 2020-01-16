@@ -1,4 +1,4 @@
-double CellHeight(String type) {
+double cellHeight(String type) {
   switch (type) {
     case "top":
       {
@@ -7,6 +7,12 @@ double CellHeight(String type) {
       break;
 
     case "product":
+      {
+        return 246;
+      }
+      break;
+
+    case "shop":
       {
         return 246;
       }

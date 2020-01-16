@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:parcelo/models/product.dart';
 import 'package:parcelo/product/productInfo.dart';
 import 'package:parcelo/product/productTop.dart';
 
@@ -6,10 +7,9 @@ import '../argParcelo.dart';
 import '../colorsParcelo.dart';
 
 class ProductView extends StatelessWidget {
-  final int pos1;
-  final int pos2;
+  final Product product;
 
-  ProductView({Key key, @required this.pos1, @required this.pos2}) : super(key: key);
+  ProductView({Key key, @required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +19,8 @@ class ProductView extends StatelessWidget {
         children: <Widget>[
           ListView(   
             children: <Widget>[
-              productTop(context, pos1, pos2),
-              productInfo(context, pos1, pos2),
+              productTop(context, product),
+              productInfo(context, product),
             
             ],
           ),

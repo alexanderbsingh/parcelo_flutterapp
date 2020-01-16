@@ -79,7 +79,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   ),
 
                   Container(
-                    height: 10000,
+                    height: 740,
                     padding: EdgeInsets.only(left: 0, right: 0),
                     child: TabBarView(
                         controller: _tabController,
