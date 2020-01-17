@@ -8,9 +8,11 @@ Future whichService(String type) async{
     return ['Lorem ipsum,', 'Lorem ipsum,'];
   } else if (type == 'product') {
     return await fetchProducts();
-  } else if (type == 'shop') {
+  } else if (type == 'store') {
     return await fetchShops();
+  } else if (type == 'smallProduct') {
+    return await fetchProducts();
   } else {
-    return ['Lorem ipsum,', 'Lorem ipsum,', 'Lorem ipsum,', 'Lorem ipsum,'];
+    return ['Lorem ipsum,'];
   }
 }

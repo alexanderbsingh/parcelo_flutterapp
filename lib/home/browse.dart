@@ -1,17 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:parcelo/colorsParcelo.dart';
 import 'package:parcelo/home/browseContent.dart';
-import 'package:parcelo/home/cells/productCell.dart';
-import 'package:parcelo/home/cells/shopCell.dart';
-import 'package:parcelo/home/cells/topCell.dart';
-import 'package:parcelo/models/product.dart';
-import 'package:parcelo/network/services/product_service.dart';
 import 'package:parcelo/whichService.dart';
 import '../argParcelo.dart';
-import 'cellHeight.dart';
-
-import '../network/services/shop_service.dart';
-import 'package:parcelo/models/shop.dart';
+import '../cellHeight.dart';
 
 class Browse extends StatefulWidget {
   @override
@@ -20,7 +12,7 @@ class Browse extends StatefulWidget {
 
 class _BrowseState extends State<Browse> {
   var typeHeader = ['', 'Recent', 'Only on Parcelo'];
-  var typeList = ['top', 'product', 'shop'];
+  var typeList = ['top', 'product', 'store'];
 
   @override
   Widget build(BuildContext context) {

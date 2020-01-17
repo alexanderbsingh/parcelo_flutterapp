@@ -62,7 +62,7 @@ class FilterHome extends StatelessWidget {
                   ),
                 ),
 
-                specificList(context, 'Shops', 'Your favourite shops', true, ColorsParcelo.PrimaryTextColor),
+                specificList(context, 'Stores', 'Your favourite stores', true, ColorsParcelo.PrimaryTextColor),
                 specificList(context, 'Categories', 'Your favourite Categories', true, ColorsParcelo.PrimaryTextColor),
                 specificList(context, 'Price range', 'Get products recomended in your price range', true, ColorsParcelo.PrimaryTextColor),
 

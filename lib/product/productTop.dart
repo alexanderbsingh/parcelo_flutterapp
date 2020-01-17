@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:parcelo/customWidget/customExpanded.dart';
 import 'package:parcelo/models/product.dart';
-import 'package:parcelo/product/smallPicture.dart';
 
 import '../argParcelo.dart';
 import '../colorsParcelo.dart';
