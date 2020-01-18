@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:parcelo/globalVar.dart';
+import 'package:parcelo/home/cart.dart';
 
 import '../argParcelo.dart';
 import 'browse.dart';
-import 'delivery.dart';
 import 'homeToolbar.dart';
 
 import 'package:parcelo/colorsParcelo.dart';
 
 class Home extends StatefulWidget {
-
   @override
   _HomeState createState() => _HomeState();
 }
@@ -37,9 +37,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         body: Column(
           children: <Widget>[
             homeToolbar(context),
-            Padding(padding: EdgeInsets.only(bottom: 10),),
+            Padding(padding: EdgeInsets.only(bottom: ArgParcelo.smallMargin),),
             Expanded(
               child: ListView(
+                physics: isBrowse == true ? AlwaysScrollableScrollPhysics() : NeverScrollableScrollPhysics(),
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.only(top: 15),
@@ -58,9 +59,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             fontWeight: FontWeight.w500,
                             fontFamily: 'Asap'
                           ),
-                          labelPadding: EdgeInsets.only(right: 10),
+                          labelPadding: EdgeInsets.only(right: ArgParcelo.smallMargin),
                           indicator: UnderlineTabIndicator(
-                            insets: EdgeInsets.only(right: 10, bottom: 0),
+                            insets: EdgeInsets.only(right: ArgParcelo.smallMargin, bottom: 0),
                             borderSide: BorderSide(
                                 width: 1.4,
                                 color: ColorsParcelo.PrimaryTextColor
@@ -68,14 +69,14 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           ),
                           isScrollable: true,
                           controller: _tabController,
-                          tabs: [Text("Browse"), Text("Delivery")],
+                          tabs: [Text("Browse"), Text("Cart")],
                         ),
                       ],
                     ),
                   ),
 
                   Padding(
-                    padding: EdgeInsets.only(top: 10),
+                    padding: EdgeInsets.only(top: ArgParcelo.smallMargin),
                   ),
 
                   Container(
@@ -85,7 +86,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         controller: _tabController,
                         children: [
                           Browse(),
-                          Delivery()
+                          Cart()
                         ]
                     ),
                   ),
