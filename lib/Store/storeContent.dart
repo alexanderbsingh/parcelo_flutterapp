@@ -1,28 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:parcelo/cells/productCell.dart';
-import 'package:parcelo/cells/storeCell.dart';
-import 'package:parcelo/cells/topCell.dart';
+import 'package:parcelo/cells/smallProductCell.dart';
 import 'package:parcelo/models/product.dart';
-import 'package:parcelo/models/store.dart';
 
 import '../argParcelo.dart';
 import '../colorsParcelo.dart';
 
-Widget browseContent(BuildContext context, List data, String type){
+Widget storeContent(BuildContext context, List data, String type) {
   return ListView.builder(
     scrollDirection: Axis.horizontal,
     itemBuilder: (context, pos) {
       if (pos != 0) {
-        if(type == 'top') {
-          return topCell(pos);
-
-        } else if(type == 'product'){
-          var product = data[pos-1] as Product;
-          return productCell(context, product);
-
-        } else if (type == 'store'){
-          var store = data[pos-1] as Store;
-          return StoreCell(store: store,);
+        if(type == 'smallProduct') {
+          var product = data[pos -1] as Product;
+          return smallProductCell(context, product);
 
         } else {
           return Padding(
@@ -43,6 +33,6 @@ Widget browseContent(BuildContext context, List data, String type){
       }
 
     },
-    itemCount: data.length + 1,
+    itemCount: data.length +1,
   );
 }

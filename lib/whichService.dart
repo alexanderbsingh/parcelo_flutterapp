@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import 'network/services/product_service.dart';
 import 'network/services/shop_service.dart';
 

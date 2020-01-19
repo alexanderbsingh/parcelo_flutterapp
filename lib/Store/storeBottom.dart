@@ -1,28 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:parcelo/colorsParcelo.dart';
-import 'package:parcelo/home/browseContent.dart';
-import 'package:parcelo/home/home.dart';
-import 'package:parcelo/whichService.dart';
+import 'package:parcelo/Store/storeContent.dart';
+import 'package:parcelo/globalVar.dart';
+import 'package:parcelo/models/store.dart';
+
 import '../argParcelo.dart';
 import '../cellHeight.dart';
-import 'package:parcelo/globalVar.dart';
+import '../colorsParcelo.dart';
+import '../whichService.dart';
+
+Widget storeBottom(BuildContext context, Store store) {
+  var typeHeader = ['Popular', store.name + ' recomends'];
+  var typeList = ['smallProduct', 'smallProduct'];
 
 
-
-class Browse extends StatefulWidget {
-
-  @override
-  _BrowseState createState() => _BrowseState();
-}
-
-class _BrowseState extends State<Browse> {
-  var typeHeader = ['', 'Recent', 'Only on Parcelo'];
-  var typeList = ['top', 'product', 'store'];  
-
-  @override
-  Widget build(BuildContext context) {
-    isInCart = false;
-    return ListView.builder(
+  print('old snapshot ' + oldSnapshot.toString());
+  return Container(
+    height: 700,
+    color: Colors.white,
+    child: ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, pos) {
         return Column(
@@ -46,25 +41,26 @@ class _BrowseState extends State<Browse> {
                 future: whichService(typeList[pos]),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
-                    return browseContent(context, snapshot.data, typeList[pos]);
+                    oldSnapshot = snapshot.data;
+                    return storeContent(context, snapshot.data, typeList[pos]);
                     
+                  } else if (oldSnapshot != null) {
+                    return storeContent(context, oldSnapshot, typeList[pos]);
+
                   } else if (snapshot.connectionState == ConnectionState.none) {
                     return Container(height: 10, width: 10, color: Colors.white,);
                   } else if (snapshot.connectionState == ConnectionState.active) {
                     return Container(height: 10, width: 10, color: Colors.white,);
                   } else if (snapshot.connectionState == ConnectionState.waiting){
                     return Container(height: 10, width: 10, color: Colors.white,);
-                    
                   }
                 },
               )
-              
-              
             ),
           ],
         );
       },
       itemCount: typeList.length,
-    );
-  }
+    ),
+  );/**/;
 }

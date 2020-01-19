@@ -15,13 +15,18 @@ class Home extends StatefulWidget {
 
 class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   TabController _tabController;
-  bool trueorfalse;
+  bool isChoosenTabCart = false;
 
   @override
   void initState() {
     super.initState();
-
+    
     _tabController = TabController(length: 2, vsync: this);
+    _tabController.addListener(() {
+      setState(() {
+        
+      });
+    });
   }
 
   @override
@@ -29,6 +34,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
     super.dispose();
     _tabController.dispose();
   }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +49,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
               child: Stack(
                 children: <Widget>[
                   ListView(
+                    physics: isInCart ? NeverScrollableScrollPhysics() : AlwaysScrollableScrollPhysics(),
                   children: <Widget>[
                     Padding(
                       padding: EdgeInsets.only(top: 15),
@@ -94,7 +101,6 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     ),
                   ],
                 ),
-
                 ]
               ),
             )
