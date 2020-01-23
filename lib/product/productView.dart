@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parcelo/globalVar.dart';
+import 'package:parcelo/models/price.dart';
 import 'package:parcelo/models/product.dart';
 import 'package:parcelo/network/services/product_service.dart';
 import 'package:parcelo/product/productInfo.dart';
@@ -49,8 +50,8 @@ class _ProductViewState extends State<ProductView> {
                   if (price != null) {
                     strPrice = price.toString();
                   } else {
-                    strPrice = product.prices[0].price.toString();
-                    imgURL = product.prices[0].store.logo.toString();
+                    strPrice = sortByPrice(product.prices)[0].price.toString();
+                    imgURL = sortByPrice(product.prices)[0].store.logo.toString();
                   }
                   return ListView(   
                     children: <Widget>[
@@ -119,7 +120,13 @@ class _ProductViewState extends State<ProductView> {
           ]
         )
       ),
-    );;
+    );
   }
+}
+
+List<PriceProduct> sortByPrice(List<PriceProduct> prices) {
+  prices.sort((a, b) => a.price.compareTo(b.price));
+  List<PriceProduct> sortedByPrice = prices;
+  return sortedByPrice;
 }
   
