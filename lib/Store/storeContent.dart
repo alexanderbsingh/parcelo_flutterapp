@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parcelo/cells/smallProductCell.dart';
+import 'package:parcelo/models/price.dart';
 import 'package:parcelo/models/product.dart';
 
 import '../argParcelo.dart';
@@ -11,8 +12,9 @@ Widget storeContent(BuildContext context, List data, String type) {
     itemBuilder: (context, pos) {
       if (pos != 0) {
         if(type == 'smallProduct') {
-          var product = data[pos -1] as Product;
-          return smallProductCell(context, product);
+          var price = data[pos -1] as Price;
+          var product = price.product; 
+          return smallProductCell(context, product, price.price);
 
         } else {
           return Padding(

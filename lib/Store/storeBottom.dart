@@ -8,7 +8,7 @@ import '../cellHeight.dart';
 import '../colorsParcelo.dart';
 import '../whichService.dart';
 
-Widget storeBottom(BuildContext context, Store store) {
+Widget storeBottom(BuildContext context, StoreFull store) {
   var typeHeader = ['Popular', store.name + ' recomends'];
   var typeList = ['smallProduct', 'smallProduct'];
 
@@ -37,30 +37,12 @@ Widget storeBottom(BuildContext context, Store store) {
 
             Container(
               height: cellHeight(typeList[pos]),
-              child: FutureBuilder(
-                future: whichService(typeList[pos]),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    oldSnapshot = snapshot.data;
-                    return storeContent(context, snapshot.data, typeList[pos]);
-                    
-                  } else if (oldSnapshot != null) {
-                    return storeContent(context, oldSnapshot, typeList[pos]);
-
-                  } else if (snapshot.connectionState == ConnectionState.none) {
-                    return Container(height: 10, width: 10, color: Colors.white,);
-                  } else if (snapshot.connectionState == ConnectionState.active) {
-                    return Container(height: 10, width: 10, color: Colors.white,);
-                  } else if (snapshot.connectionState == ConnectionState.waiting){
-                    return Container(height: 10, width: 10, color: Colors.white,);
-                  }
-                },
-              )
+              child: storeContent(context, store.prices, typeList[pos])
             ),
           ],
         );
       },
       itemCount: typeList.length,
     ),
-  );/**/;
+  );
 }

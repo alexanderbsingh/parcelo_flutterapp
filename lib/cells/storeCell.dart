@@ -24,7 +24,7 @@ class _StoreCellState extends State<StoreCell> {
     return GestureDetector(
       onTap: () {
         print('pressed, shop');
-        Navigator.push(context, SlideBottomRoute(page: StoreView(store: store)));
+        Navigator.push(context, SlideBottomRoute(page: StoreView(storeID: store.id)));
       },
       child: Padding(
       padding: const EdgeInsets.only(top: 10, right: 10),

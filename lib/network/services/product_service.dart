@@ -8,7 +8,7 @@ Future<List<Product>> fetchProducts() async {
   List<Product> products= new List<Product>();
 
   final response = await http.get(
-    'http://localhost:3000/api/products/',
+    'http://192.168.1.229:3000/api/products/',
   );
   final responseJson = json.decode(response.body);
   Iterable list = responseJson;
@@ -19,5 +19,17 @@ Future<List<Product>> fetchProducts() async {
   return products;
 }
 
+Future<Product> fetchProduct(String id) async {
+  /*Product products= new Product();
 
+  final response = await http.get(
+    'http://localhost:3000/api/products/' + id,
+  );
+  final responseJson = json.decode(response.body);
+  Iterable list = responseJson;
+  products = list.map((product) => Product.fromJson(product)).toList();
 
+  print(products.length.toString() + " products loaded");
+
+  return products;*/
+}

@@ -7,7 +7,7 @@ Future whichService(String type) async{
   } else if (type == 'product') {
     return await fetchProducts();
   } else if (type == 'store') {
-    return await fetchShops();
+    return await fetchStores();
   } else if (type == 'smallProduct') {
     return await fetchProducts();
   } else {

@@ -6,11 +6,11 @@ import 'package:parcelo/customWidget/customExpanded.dart';
 import 'package:parcelo/models/product.dart';
 import 'package:parcelo/product/productView.dart';
 
-Widget smallProductCell(BuildContext context, Product product) {
+Widget smallProductCell(BuildContext context, ProductStore product, int price) {
   return GestureDetector(
       onTap: () {
         print('pressed, product');
-        Navigator.push(context, SlideBottomRoute(page: ProductView(product: product)));
+        Navigator.push(context, SlideBottomRoute(page: ProductView(product: null)));
       },
       child: Padding(
       padding: EdgeInsets.only(right: ArgParcelo.smallMargin, top: ArgParcelo.smallMargin),
@@ -52,7 +52,7 @@ Widget smallProductCell(BuildContext context, Product product) {
                   alignment: Alignment.bottomLeft,
                   padding: EdgeInsets.only(right: 4),
                   width: 125,
-                  child: Text('10 000 kr',
+                  child: Text(price.toString(),
                     style: TextStyle(
                         color: ColorsParcelo.PrimaryColor,
                         fontWeight: FontWeight.w600,
@@ -70,7 +70,7 @@ Widget smallProductCell(BuildContext context, Product product) {
               width: 80,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(product.images[0]),
+                  image: NetworkImage(product.image),
                   fit: BoxFit.fitHeight
                 ),
                 shape: BoxShape.rectangle,

@@ -48,3 +48,27 @@ class Product {
     );
   }
 }
+
+class ProductStore {
+  final String id;
+  final String slug;
+  final String name;
+  final String serialNumber;
+  final String manufacturer;
+  final String description;
+  final String image;
+
+  ProductStore({this.id, this.slug, this.name, this.description, this.serialNumber, this.manufacturer, this.image});
+
+  factory ProductStore.fromJson(Map<String, dynamic> json) {
+    return ProductStore(
+      id: json['id'],
+      slug: json['slug'],
+      name: json['name'],
+      serialNumber: json['serialNumber'],
+      manufacturer: json['manufacturer'],
+      description: json['description'],
+      image: json['image'],
+    );
+  }
+}

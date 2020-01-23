@@ -8,7 +8,7 @@ import 'package:parcelo/models/store.dart';
 import '../argParcelo.dart';
 import '../colorsParcelo.dart';
 
-Widget storeTop(BuildContext context, Store store){
+Widget storeTop(BuildContext context, StoreFull store){
   return Stack(
     alignment: Alignment.center,
     children: <Widget>[
@@ -20,14 +20,14 @@ Widget storeTop(BuildContext context, Store store){
               image: DecorationImage(
                 image: NetworkImage(store.banner),
                 fit: BoxFit.cover
-              ),
+              ),          
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.circular(ArgParcelo.cornerRadius)
             ),
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
             child: Container(
-              color: Colors.white.withOpacity(0.2),
+              color: Colors.white.withOpacity(0.3),
             ),
           ),
         ),
@@ -114,9 +114,6 @@ Widget storeTop(BuildContext context, Store store){
           ),
         ],),
       )
-    
-
-
     ],
     );
 }

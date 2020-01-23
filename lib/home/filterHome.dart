@@ -43,7 +43,7 @@ class FilterHome extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  'Filter yout feed',
+                  'Filter your feed',
                   style: TextStyle(
                     fontSize: ArgParcelo.largeHeader,
                     fontWeight: FontWeight.w600,

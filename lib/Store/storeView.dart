@@ -1,47 +1,70 @@
 import 'package:flutter/material.dart';
 import 'package:parcelo/Store/storeBottom.dart';
 import 'package:parcelo/Store/storeTop.dart';
-import 'package:parcelo/globalVar.dart';
 import 'package:parcelo/models/store.dart';
+import 'package:parcelo/network/services/shop_service.dart';
 
 import '../argParcelo.dart';
 import '../colorsParcelo.dart';
+import '../globalVar.dart';
 
 class StoreView extends StatefulWidget {
-  final Store store;
+  final String storeID;
 
-  StoreView({@required this.store});
+  StoreView({@required this.storeID});
 
   @override
-  _StoreViewState createState() => _StoreViewState(store: store);
+  _StoreViewState createState() => _StoreViewState(storeID: storeID);
 }
 
 class _StoreViewState extends State<StoreView> {
   var typeHeader = ['', 'Recent', 'Only on Parcelo'];
   var typeList = ['top', 'product', 'store'];  
 
-  final Store store;
+  final String storeID;
   bool isLiked = false;
 
-  _StoreViewState({@required this.store});
+  _StoreViewState({@required this.storeID});
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () {
-        print('will pop');
-        oldSnapshot = null;
-      },
-      child: Scaffold(
-      backgroundColor: Colors.white,
-      body: Stack(
+    return Scaffold(
+      //backgroundColor: Colors.white,
+      body: SafeArea(
+        top: false,
+        bottom: false,
+        child: Stack(
           children: <Widget>[
-            ListView(   
-              children: <Widget>[
-                storeTop(context, store),
-                storeBottom(context, store),
-              
-              ],
+            FutureBuilder(
+              future: fetchStore(storeID),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  StoreFull store = snapshot.data;
+                  oldSnapshot = snapshot.data;
+                  return ListView(   
+                    children: <Widget>[
+                      storeTop(context, store),
+                      storeBottom(context, store),
+                    ],
+                  );
+                }
+                else if (oldSnapshot != null) {
+                StoreFull store = snapshot.data;
+                  return ListView(   
+                    children: <Widget>[
+                      storeTop(context, store),
+                      storeBottom(context, store),
+                    ],
+                  ); 
+                } else if (snapshot.connectionState == ConnectionState.none) {
+                  return Container(height: 10, width: 10, color: Colors.white,);
+                } else if (snapshot.connectionState == ConnectionState.active) {
+                  return Container(height: 10, width: 10, color: Colors.white,);
+                } else if (snapshot.connectionState == ConnectionState.waiting){
+                  return Container(height: 10, width: 10, color: Colors.white,);
+                  
+                }
+              },
             ),
             Container(
               height: 134,
@@ -81,8 +104,8 @@ class _StoreViewState extends State<StoreView> {
               ),
             ),
           ]
-        )
-      ),
+        ),
+      )
     );
   }
 }
