@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart' as prefix0;
+import 'package:parcelo/models/price.dart';
 
 class Product {
   final String id;
@@ -90,13 +91,14 @@ class ProductFull {
   final List<dynamic> images;
   final List<dynamic> alternatives;
   final List<dynamic> categories;
-  final List<dynamic> prices;
+  final List<PriceProduct> prices;
   final List<dynamic> reviews;
   final String barcode;
 
   ProductFull({this.id, this.slug, this.name, this.serialNumber, this.manufacturer, this.description, this.color, this.multiFunction, this.exclusive, this.width, this.height, this.depth, this.weight, this.images, this.alternatives, this.categories, this.prices, this.reviews, this.barcode});
 
   factory ProductFull.fromJson(Map<String, dynamic> json) {
+
     return ProductFull(
       id: json['id'],
       slug: json['slug'],
@@ -114,9 +116,25 @@ class ProductFull {
       images: json['images'],
       alternatives: json['alternatives'],
       categories: json['categories'],
-      prices: json['prices'],
+      prices: findPrices(json['prices']),
       reviews: json['reviews'],
       barcode: json['barcode'],
     );
   }
+}
+
+List<PriceProduct> findPrices(List<dynamic> json) {
+    List<PriceProduct> prices = new List();
+    var num = 10;
+
+    for (var n = num; n >= 0; n--) {
+      try {
+        print(PriceProduct.fromJson(json[num - n]).toString() + ' prices');
+        prices.add(PriceProduct.fromJson(json[num - n]));
+      } catch (e) {
+        print(e);
+        break;
+      }
+    }
+    return prices;
 }

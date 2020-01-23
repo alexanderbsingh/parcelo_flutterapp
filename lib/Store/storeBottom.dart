@@ -37,7 +37,7 @@ Widget storeBottom(BuildContext context, StoreFull store) {
 
             Container(
               height: cellHeight(typeList[pos]),
-              child: storeContent(context, store.prices, typeList[pos])
+              child: storeContent(context, store.prices, typeList[pos], store.logo)
             ),
           ],
         );

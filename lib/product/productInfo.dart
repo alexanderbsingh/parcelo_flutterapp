@@ -7,7 +7,7 @@ import 'package:parcelo/product/productInfoCell.dart';
 import '../argParcelo.dart';
 import '../colorsParcelo.dart';
 
-Widget productInfo(BuildContext context, ProductFull product) {
+Widget productInfo(BuildContext context, ProductFull product, String price) {
   return Container(
   color: Colors.white,
   child: Padding(
@@ -47,7 +47,7 @@ Widget productInfo(BuildContext context, ProductFull product) {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
-                  Text('100 kr',
+                  Text(price + ' kr',
                     style: TextStyle(
                         color: ColorsParcelo.PrimaryColor,
                         fontWeight: FontWeight.w600,

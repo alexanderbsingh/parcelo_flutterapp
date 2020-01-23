@@ -6,15 +6,15 @@ import 'package:parcelo/models/product.dart';
 import '../argParcelo.dart';
 import '../colorsParcelo.dart';
 
-Widget storeContent(BuildContext context, List data, String type) {
+Widget storeContent(BuildContext context, List data, String type, String imgURL) {
   return ListView.builder(
     scrollDirection: Axis.horizontal,
     itemBuilder: (context, pos) {
       if (pos != 0) {
         if(type == 'smallProduct') {
-          var price = data[pos -1] as Price;
+          var price = data[pos -1] as PriceStore;
           var product = price.product; 
-          return smallProductCell(context, product, price.price);
+          return smallProductCell(context, product, price.price, imgURL);
 
         } else {
           return Padding(

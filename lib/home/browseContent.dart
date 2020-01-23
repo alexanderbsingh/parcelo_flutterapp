@@ -43,6 +43,6 @@ Widget browseContent(BuildContext context, List data, String type){
       }
 
     },
-    itemCount: data.length + 1,
+    itemCount: data != null ? data.length + 1 : 0,
   );
 }

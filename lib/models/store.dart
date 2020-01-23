@@ -24,6 +24,28 @@ class Store {
   }
 }
 
+class StoreProduct {
+  final String id;
+  final String slug;
+  final String name;
+  final String description;
+  final String logo;
+  final String type;
+
+  StoreProduct({this.id, this.slug, this.name, this.description, this.logo, this.type});
+
+  factory StoreProduct.fromJson(Map<String, dynamic> json) {
+    return StoreProduct(
+      id: json['id'],
+      slug: json['slug'],
+      name: json['name'],
+      description: json['description'],
+      logo: json['logo'],
+      type: json['type'],
+    );
+  }
+}
+
 class StoreFull {
   final String id;
   final String slug;
@@ -32,7 +54,7 @@ class StoreFull {
   final String type;
   final String logo;
   final String banner;
-  final List<Price> prices;
+  final List<PriceStore> prices;
 
   StoreFull({this.id, this.slug, this.name, this.description, this.logo, this.banner, this.type, this.prices});
 
@@ -52,14 +74,14 @@ class StoreFull {
   }
 }
 
-List<Price> findPrices(List<dynamic> json) {
-    List<Price> prices = new List();
+List<PriceStore> findPrices(List<dynamic> json) {
+    List<PriceStore> prices = new List();
     var num = 10;
 
     for (var n = num; n >= 0; n--) {
       try {
-        print(Price.fromJson(json[num - n]).toString() + ' prices');
-        prices.add(Price.fromJson(json[num - n]));
+        print(PriceStore.fromJson(json[num - n]).toString() + ' prices');
+        prices.add(PriceStore.fromJson(json[num - n]));
       } catch (e) {
         print(e);
         break;

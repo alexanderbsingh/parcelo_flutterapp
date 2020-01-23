@@ -10,22 +10,29 @@ import '../colorsParcelo.dart';
 
 class ProductView extends StatefulWidget {
   final String productID;
+  final int price;
+  String imgURL;
   
-  ProductView({@required this.productID});
+  ProductView({@required this.productID, this.price, this.imgURL});
 
   @override
-  _ProductViewState createState() => _ProductViewState(productID: productID);
+  _ProductViewState createState() => _ProductViewState(productID: productID, price: price, imgURL: imgURL);
 }
 
 class _ProductViewState extends State<ProductView> {
     final String productID;
+    final int price;
+    String imgURL;
+    String strPrice;
+
     bool isLiked = false;
 
-    _ProductViewState({@required this.productID});
-
+    _ProductViewState({@required this.productID, this.price, this.imgURL});
 
   @override
   Widget build(BuildContext context) {
+    
+
     return SafeArea(
       top: false,
       bottom: false,
@@ -39,10 +46,16 @@ class _ProductViewState extends State<ProductView> {
                 if (snapshot.connectionState == ConnectionState.done) {
                   ProductFull product = snapshot.data;
                   oldSnapshotProduct = snapshot.data;
+                  if (price != null) {
+                    strPrice = price.toString();
+                  } else {
+                    strPrice = product.prices[0].price.toString();
+                    imgURL = product.prices[0].store.logo.toString();
+                  }
                   return ListView(   
                     children: <Widget>[
-                      productTop(context, product),
-                      productInfo(context, product),
+                      productTop(context, product, imgURL),
+                      productInfo(context, product, strPrice),
                     
                     ],
                   );
@@ -51,8 +64,8 @@ class _ProductViewState extends State<ProductView> {
                   ProductFull product = snapshot.data;
                   return ListView(   
                     children: <Widget>[
-                      productTop(context, product),
-                      productInfo(context, product),
+                      productTop(context, product, imgURL),
+                      productInfo(context, product, strPrice),
                     
                     ],
                   );

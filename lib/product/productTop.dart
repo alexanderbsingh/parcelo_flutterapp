@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:parcelo/customWidget/customExpanded.dart';
 import 'package:parcelo/models/product.dart';
+import 'package:parcelo/product/smallPicture.dart';
 
 import '../argParcelo.dart';
 import '../colorsParcelo.dart';
 
-Widget productTop(BuildContext context, ProductFull product) {
+Widget productTop(BuildContext context, ProductFull product, String imgURL) {
   return Stack(
     alignment: Alignment.topLeft,
     children: <Widget>[
       Container(
-        padding: EdgeInsets.only(bottom: 20, top: 40),
+        padding: EdgeInsets.only(bottom: 42, top: 40),
         height: MediaQuery.of(context).size.height * 0.6,
         color: ColorsParcelo.LightGreyColor,
         child: Container(
@@ -24,7 +26,7 @@ Widget productTop(BuildContext context, ProductFull product) {
         ),
       ),
       
-      /*Container(
+      Container(
         height: MediaQuery.of(context).size.height * 0.6,
         child: Column(
           children: <Widget>[
@@ -33,11 +35,11 @@ Widget productTop(BuildContext context, ProductFull product) {
             customExpanded(),
 
             Padding(
-              padding: const EdgeInsets.only(left: ArgParcelo.margin, bottom: ArgParcelo.margin),
+              padding: const EdgeInsets.only(left: ArgParcelo.margin, bottom: ArgParcelo.smallMargin),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  smallPicture(context),
+                  /*smallPicture(context),
                   smallPicture(context),
                   smallPicture(context),
                   Text('+2',
@@ -46,6 +48,27 @@ Widget productTop(BuildContext context, ProductFull product) {
                       fontSize: ArgParcelo.productTitleSmall,
                       fontWeight: FontWeight.bold
                     )
+                  ),
+                  */
+                  customExpanded(),
+
+                  Visibility(
+                    visible: imgURL != null ? true : false,
+                      child: Padding(
+                      padding: EdgeInsets.only(right: ArgParcelo.smallMargin),
+                      child: imgURL != null ? Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                          image: DecorationImage(
+                            image: NetworkImage(imgURL), 
+                            fit: BoxFit.cover
+                          )
+                        ),
+                      ) : null,
+                    ),
                   ) 
 
                 ],
@@ -53,7 +76,7 @@ Widget productTop(BuildContext context, ProductFull product) {
             ),
           ],
         ),
-      ),*/
+      ),
     ],
     );
 }
