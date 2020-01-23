@@ -40,7 +40,7 @@ class _StoreViewState extends State<StoreView> {
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
                   StoreFull store = snapshot.data;
-                  oldSnapshot = snapshot.data;
+                  oldSnapshotStore = snapshot.data;
                   return ListView(   
                     children: <Widget>[
                       storeTop(context, store),
@@ -48,7 +48,7 @@ class _StoreViewState extends State<StoreView> {
                     ],
                   );
                 }
-                else if (oldSnapshot != null) {
+                else if (oldSnapshotStore != null) {
                 StoreFull store = snapshot.data;
                   return ListView(   
                     children: <Widget>[

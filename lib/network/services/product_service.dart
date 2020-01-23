@@ -19,17 +19,16 @@ Future<List<Product>> fetchProducts() async {
   return products;
 }
 
-Future<Product> fetchProduct(String id) async {
-  /*Product products= new Product();
+Future<ProductFull> fetchProduct(String id) async {
+  ProductFull product= new ProductFull();
 
   final response = await http.get(
     'http://localhost:3000/api/products/' + id,
   );
-  final responseJson = json.decode(response.body);
-  Iterable list = responseJson;
-  products = list.map((product) => Product.fromJson(product)).toList();
+  Map productMap = jsonDecode(response.body);
+  product = ProductFull.fromJson(productMap);
 
-  print(products.length.toString() + " products loaded");
+  print(product.name.toString() + " loaded");
 
-  return products;*/
+  return product;
 }

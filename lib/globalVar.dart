@@ -1,4 +1,7 @@
 library my_prj.globals;
 
 bool isInCart = false;
-var oldSnapshot;
+var oldSnapshotStore;
+var oldSnapshotBrowse;
+var oldSnapshotCart;
+var oldSnapshotProduct;

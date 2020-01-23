@@ -4,7 +4,7 @@ import 'package:parcelo/models/product.dart';
 import '../argParcelo.dart';
 import '../colorsParcelo.dart';
 
-Widget productTop(BuildContext context, Product product) {
+Widget productTop(BuildContext context, ProductFull product) {
   return Stack(
     alignment: Alignment.topLeft,
     children: <Widget>[

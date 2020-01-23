@@ -46,8 +46,10 @@ class _BrowseState extends State<Browse> {
                 future: whichService(typeList[pos]),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
+                    oldSnapshotBrowse = snapshot.data;
                     return browseContent(context, snapshot.data, typeList[pos]);
-                    
+                  } else if (oldSnapshotBrowse != null) {
+                    return browseContent(context, snapshot.data, typeList[pos]);
                   } else if (snapshot.connectionState == ConnectionState.none) {
                     return Container(height: 10, width: 10, color: Colors.white,);
                   } else if (snapshot.connectionState == ConnectionState.active) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:parcelo/home/main.dart';
 
 import '../colorsParcelo.dart';
+import '../main.dart';
 
 class Search extends StatelessWidget {
   @override

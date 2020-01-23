@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:parcelo/globalVar.dart';
 import 'package:parcelo/models/product.dart';
+import 'package:parcelo/network/services/product_service.dart';
 import 'package:parcelo/product/productInfo.dart';
 import 'package:parcelo/product/productTop.dart';
 
 import '../argParcelo.dart';
 import '../colorsParcelo.dart';
 
-class ProductView extends StatelessWidget {
-  final Product product;
+class ProductView extends StatefulWidget {
+  final String productID;
+  
+  ProductView({@required this.productID});
 
-  ProductView({Key key, @required this.product}) : super(key: key);
+  @override
+  _ProductViewState createState() => _ProductViewState(productID: productID);
+}
+
+class _ProductViewState extends State<ProductView> {
+    final String productID;
+    bool isLiked = false;
+
+    _ProductViewState({@required this.productID});
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +33,38 @@ class ProductView extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Stack(
           children: <Widget>[
-            ListView(   
-              children: <Widget>[
-                productTop(context, product),
-                productInfo(context, product),
-              
-              ],
+            FutureBuilder(
+              future: fetchProduct(productID),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  ProductFull product = snapshot.data;
+                  oldSnapshotProduct = snapshot.data;
+                  return ListView(   
+                    children: <Widget>[
+                      productTop(context, product),
+                      productInfo(context, product),
+                    
+                    ],
+                  );
+                }
+                else if (oldSnapshotProduct != null) {
+                  ProductFull product = snapshot.data;
+                  return ListView(   
+                    children: <Widget>[
+                      productTop(context, product),
+                      productInfo(context, product),
+                    
+                    ],
+                  );
+                } else if (snapshot.connectionState == ConnectionState.none) {
+                  return Container(height: 10, width: 10, color: Colors.white,);
+                } else if (snapshot.connectionState == ConnectionState.active) {
+                  return Container(height: 10, width: 10, color: Colors.white,);
+                } else if (snapshot.connectionState == ConnectionState.waiting){
+                  return Container(height: 10, width: 10, color: Colors.white,);
+                  
+                }
+              },
             ),
             Container(
               height: 134,
@@ -39,9 +78,11 @@ class ProductView extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () {
                         print('pressed, save');
+                        isLiked = !isLiked;
+                        setState(() {});
                       },
                       child: Icon(
-                        Icons.favorite_border,
+                        isLiked ? Icons.favorite : Icons.favorite_border,                        
                         size: 24,
                         color: ColorsParcelo.PrimaryTextColor,
                       )
@@ -51,6 +92,7 @@ class ProductView extends StatelessWidget {
                 leading: GestureDetector(
                       onTap: () {
                         print('pressed, exit');
+                        oldSnapshotProduct = null;
                         Navigator.pop(context);
                       },
                       child: Icon(
@@ -64,6 +106,7 @@ class ProductView extends StatelessWidget {
           ]
         )
       ),
-    );
+    );;
   }
 }
+  

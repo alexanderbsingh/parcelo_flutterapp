@@ -13,7 +13,7 @@ Widget storeBottom(BuildContext context, StoreFull store) {
   var typeList = ['smallProduct', 'smallProduct'];
 
 
-  print('old snapshot ' + oldSnapshot.toString());
+  print('old snapshot ' + oldSnapshotStore.toString());
   return Container(
     height: 700,
     color: Colors.white,

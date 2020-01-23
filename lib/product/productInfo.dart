@@ -7,7 +7,7 @@ import 'package:parcelo/product/productInfoCell.dart';
 import '../argParcelo.dart';
 import '../colorsParcelo.dart';
 
-Widget productInfo(BuildContext context, Product product) {
+Widget productInfo(BuildContext context, ProductFull product) {
   return Container(
   color: Colors.white,
   child: Padding(

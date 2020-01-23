@@ -10,7 +10,7 @@ Widget smallProductCell(BuildContext context, ProductStore product, int price) {
   return GestureDetector(
       onTap: () {
         print('pressed, product');
-        Navigator.push(context, SlideBottomRoute(page: ProductView(product: null)));
+        Navigator.push(context, SlideBottomRoute(page: ProductView(productID: product.id)));
       },
       child: Padding(
       padding: EdgeInsets.only(right: ArgParcelo.smallMargin, top: ArgParcelo.smallMargin),
