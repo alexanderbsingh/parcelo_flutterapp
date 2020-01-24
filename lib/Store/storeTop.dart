@@ -13,7 +13,7 @@ Widget storeTop(BuildContext context, StoreFull store){
     alignment: Alignment.center,
     children: <Widget>[
       Container(
-        height: MediaQuery.of(context).size.height * 0.6,
+        height: MediaQuery.of(context).size.height * 0.6 + MediaQuery.of(context).padding.top,
         color: ColorsParcelo.LightGreyColor,
         child: Container(
           decoration: BoxDecoration(
@@ -73,8 +73,7 @@ Widget storeTop(BuildContext context, StoreFull store){
       Container(
         alignment: Alignment.bottomLeft,
         padding: EdgeInsets.only(left: ArgParcelo.margin, right: ArgParcelo.margin, bottom: ArgParcelo.margin),
-        height: MediaQuery.of(context).size.height * 0.6,
-        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height * 0.6 + MediaQuery.of(context).padding.top,
         child: Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
           
           GestureDetector(

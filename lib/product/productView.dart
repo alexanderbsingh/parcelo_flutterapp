@@ -34,93 +34,91 @@ class _ProductViewState extends State<ProductView> {
   Widget build(BuildContext context) {
     
 
-    return SafeArea(
-      top: false,
-      bottom: false,
-          child: Scaffold(
-      backgroundColor: Colors.white,
+    return Scaffold(
       body: Stack(
-          children: <Widget>[
-            FutureBuilder(
-              future: fetchProduct(productID),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
-                  ProductFull product = snapshot.data;
-                  oldSnapshotProduct = snapshot.data;
-                  if (price != null) {
-                    strPrice = price.toString();
-                  } else {
-                    strPrice = sortByPrice(product.prices)[0].price.toString();
-                    imgURL = sortByPrice(product.prices)[0].store.logo.toString();
-                  }
-                  return ListView(   
-                    children: <Widget>[
-                      productTop(context, product, imgURL),
-                      productInfo(context, product, strPrice),
-                    
-                    ],
-                  );
-                }
-                else if (oldSnapshotProduct != null) {
-                  ProductFull product = snapshot.data;
-                  return ListView(   
-                    children: <Widget>[
-                      productTop(context, product, imgURL),
-                      productInfo(context, product, strPrice),
-                    
-                    ],
-                  );
-                } else if (snapshot.connectionState == ConnectionState.none) {
-                  return Container(height: 10, width: 10, color: Colors.white,);
-                } else if (snapshot.connectionState == ConnectionState.active) {
-                  return Container(height: 10, width: 10, color: Colors.white,);
-                } else if (snapshot.connectionState == ConnectionState.waiting){
-                  return Container(height: 10, width: 10, color: Colors.white,);
-                  
-                }
-              },
-            ),
-            Container(
-              height: 134,
-              child: AppBar(
-                backgroundColor: Colors.transparent,
-                brightness: Brightness.light,
-                elevation: 0,
-                actions: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(right: ArgParcelo.margin),
-                    child: GestureDetector(
-                      onTap: () {
-                        print('pressed, save');
-                        isLiked = !isLiked;
-                        setState(() {});
-                      },
-                      child: Icon(
-                        isLiked ? Icons.favorite : Icons.favorite_border,                        
-                        size: 24,
-                        color: ColorsParcelo.PrimaryTextColor,
-                      )
-                    ),
-                  ),
+      children: <Widget>[
+        FutureBuilder(
+          future: fetchProduct(productID),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              ProductFull product = snapshot.data;
+              oldSnapshotProduct = snapshot.data;
+              if (price != null) {
+                strPrice = price.toString();
+              } else {
+                strPrice = sortByPrice(product.prices)[0].price.toString();
+                imgURL = sortByPrice(product.prices)[0].store.logo.toString();
+              }
+              return ListView(  
+                padding: EdgeInsets.only(top: 0),
+                children: <Widget>[
+                  productTop(context, product, imgURL),
+                  productInfo(context, product, strPrice),
+                
                 ],
-                leading: GestureDetector(
-                      onTap: () {
-                        print('pressed, exit');
-                        oldSnapshotProduct = null;
-                        Navigator.pop(context);
-                      },
-                      child: Icon(
-                        Icons.clear,
-                        size: 24,
-                        color: ColorsParcelo.PrimaryTextColor,
-                      )
-                    ),
-              ),
+              );
+            }
+            else if (oldSnapshotProduct != null) {
+              ProductFull product = snapshot.data;
+              return ListView(   
+                children: <Widget>[
+                  productTop(context, product, imgURL),
+                  productInfo(context, product, strPrice),
+                
+                ],
+              );
+            } else if (snapshot.connectionState == ConnectionState.none) {
+              return Container(height: 10, width: 10, color: Colors.white,);
+            } else if (snapshot.connectionState == ConnectionState.active) {
+              return Container(height: 10, width: 10, color: Colors.white,);
+            } else if (snapshot.connectionState == ConnectionState.waiting){
+              return Container(height: 10, width: 10, color: Colors.white,);
+              
+            }
+          },
+        ),
+        Positioned(
+          top: 0.0,
+          left: 0.0,
+          right: 0.0,
+            child: AppBar(
+              backgroundColor: Colors.transparent,
+              brightness: Brightness.light,
+              elevation: 0,
+              actions: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(right: ArgParcelo.margin),
+                  child: GestureDetector(
+                    onTap: () {
+                      print('pressed, save');
+                      isLiked = !isLiked;
+                      setState(() {});
+                    },
+                    child: Icon(
+                      isLiked ? Icons.favorite : Icons.favorite_border,                        
+                      size: 24,
+                      color: ColorsParcelo.PrimaryTextColor,
+                    )
+                  ),
+                ),
+              ],
+              leading: GestureDetector(
+                    onTap: () {
+                      print('pressed, exit');
+                      oldSnapshotProduct = null;
+                      Navigator.pop(context);
+                    },
+                    child: Icon(
+                      Icons.clear,
+                      size: 24,
+                      color: ColorsParcelo.PrimaryTextColor,
+                    )
+                  ),
             ),
-          ]
+        ),
+    ]
         )
-      ),
-    );
+      );
   }
 }
 

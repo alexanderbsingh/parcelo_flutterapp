@@ -49,6 +49,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
               child: Stack(
                 children: <Widget>[
                   ListView(
+                    shrinkWrap: true,
                     physics: isInCart ? NeverScrollableScrollPhysics() : AlwaysScrollableScrollPhysics(),
                   children: <Widget>[
                     Padding(

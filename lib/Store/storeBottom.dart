@@ -18,6 +18,7 @@ Widget storeBottom(BuildContext context, StoreFull store) {
     height: 700,
     color: Colors.white,
     child: ListView.builder(
+      padding: EdgeInsets.only(top: 0),
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, pos) {
         return Column(

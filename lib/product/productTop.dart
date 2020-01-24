@@ -11,10 +11,10 @@ Widget productTop(BuildContext context, ProductFull product, String imgURL) {
     alignment: Alignment.topLeft,
     children: <Widget>[
       Container(
-        padding: EdgeInsets.only(bottom: 42, top: 40),
-        height: MediaQuery.of(context).size.height * 0.6,
+        padding: EdgeInsets.only(bottom: 42, top: 40 + MediaQuery.of(context).padding.top),
+        height: MediaQuery.of(context).size.height * 0.6 + MediaQuery.of(context).padding.top,
         color: ColorsParcelo.LightGreyColor,
-        child: Container(
+        child: Container( 
           decoration: BoxDecoration(
               image: DecorationImage(
                 image: NetworkImage(product.images[0]),
@@ -27,10 +27,9 @@ Widget productTop(BuildContext context, ProductFull product, String imgURL) {
       ),
       
       Container(
-        height: MediaQuery.of(context).size.height * 0.6,
+        height: MediaQuery.of(context).size.height * 0.6 + MediaQuery.of(context).padding.top,
         child: Column(
           children: <Widget>[
-            //Container(height: 100, child: productToolbar(context)),
 
             customExpanded(),
 
