@@ -23,50 +23,50 @@ class _BrowseState extends State<Browse> {
   Widget build(BuildContext context) {
     isInCart = false;
     return ListView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      itemBuilder: (context, pos) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            if(typeHeader[pos].isNotEmpty) Padding(
-              padding: const EdgeInsets.only(left: 15, top: 10),
-              child: Text(
-                typeHeader[pos],
-                style: TextStyle(
-                  color: ColorsParcelo.PrimaryTextColor,
-                  fontWeight: FontWeight.w600,
-                  fontSize: ArgParcelo.subHeader
-                ),
+    physics: NeverScrollableScrollPhysics(),
+    itemBuilder: (context, pos) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          if(typeHeader[pos].isNotEmpty) Padding(
+            padding: const EdgeInsets.only(left: 15, top: 10),
+            child: Text(
+              typeHeader[pos],
+              style: TextStyle(
+                color: ColorsParcelo.PrimaryTextColor,
+                fontWeight: FontWeight.w600,
+                fontSize: ArgParcelo.subHeader
               ),
             ),
+          ),
 
-            Container(
-              height: cellHeight(typeList[pos]),
-              child: FutureBuilder(
-                future: whichService(typeList[pos]),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    oldSnapshotBrowse = snapshot.data;
-                    return browseContent(context, snapshot.data, typeList[pos]);
-                  } else if (oldSnapshotBrowse != null) {
-                    return browseContent(context, snapshot.data, typeList[pos]);
-                  } else if (snapshot.connectionState == ConnectionState.none) {
-                    return Container(height: 10, width: 10, color: Colors.white,);
-                  } else if (snapshot.connectionState == ConnectionState.active) {
-                    return Container(height: 10, width: 10, color: Colors.white,);
-                  } else if (snapshot.connectionState == ConnectionState.waiting){
-                    return Container(height: 10, width: 10, color: Colors.white,);
-                    
-                  }
-                },
-              )
-              
-              
-            ),
-          ],
-        );
-      },
-      itemCount: typeList.length,
-    );
+          Container(
+            height: cellHeight(typeList[pos]),
+            child: FutureBuilder(
+              future: whichService(typeList[pos]),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  oldSnapshotBrowse = snapshot.data;
+                  return browseContent(context, snapshot.data, typeList[pos]);
+                } /*else if (oldSnapshotBrowse != null) {
+                  return browseContent(context, snapshot.data, typeList[pos]);
+                }*/ else if (snapshot.connectionState == ConnectionState.none) {
+                  return Container(height: 10, width: 10, color: Colors.white,);
+                } else if (snapshot.connectionState == ConnectionState.active) {
+                  return Container(height: 10, width: 10, color: Colors.white,);
+                } else if (snapshot.connectionState == ConnectionState.waiting){
+                  return Container(height: 10, width: 10, color: Colors.white,);
+                  
+                }
+              },
+            )
+            
+            
+          ),
+        ],
+      );
+    },
+    itemCount: typeList.length,
+      );
   }
 }

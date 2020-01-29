@@ -35,6 +35,7 @@ class _ProductViewState extends State<ProductView> {
     
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Stack(
       children: <Widget>[
         FutureBuilder(
@@ -59,8 +60,10 @@ class _ProductViewState extends State<ProductView> {
               );
             }
             else if (oldSnapshotProduct != null) {
-              ProductFull product = snapshot.data;
+              print('oldSnapShotProduct');
+              ProductFull product = oldSnapshotProduct;
               return ListView(   
+                padding: EdgeInsets.only(top: 0),
                 children: <Widget>[
                   productTop(context, product, imgURL),
                   productInfo(context, product, strPrice),
@@ -77,44 +80,39 @@ class _ProductViewState extends State<ProductView> {
             }
           },
         ),
-        Positioned(
-          top: 0.0,
-          left: 0.0,
-          right: 0.0,
-            child: AppBar(
-              backgroundColor: Colors.transparent,
-              brightness: Brightness.light,
-              elevation: 0,
-              actions: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(right: ArgParcelo.margin),
-                  child: GestureDetector(
-                    onTap: () {
-                      print('pressed, save');
-                      isLiked = !isLiked;
-                      setState(() {});
-                    },
-                    child: Icon(
-                      isLiked ? Icons.favorite : Icons.favorite_border,                        
-                      size: 24,
-                      color: ColorsParcelo.PrimaryTextColor,
-                    )
-                  ),
-                ),
-              ],
-              leading: GestureDetector(
-                    onTap: () {
-                      print('pressed, exit');
-                      oldSnapshotProduct = null;
-                      Navigator.pop(context);
-                    },
-                    child: Icon(
-                      Icons.clear,
-                      size: 24,
-                      color: ColorsParcelo.PrimaryTextColor,
-                    )
-                  ),
+        AppBar(
+          backgroundColor: Colors.transparent,
+          brightness: Brightness.light,
+          elevation: 0,
+          actions: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(right: ArgParcelo.margin),
+              child: GestureDetector(
+                onTap: () {
+                  print('pressed, save');
+                  isLiked = !isLiked;
+                  setState(() {});
+                },
+                child: Icon(
+                  isLiked ? Icons.favorite : Icons.favorite_border,                        
+                  size: 24,
+                  color: ColorsParcelo.PrimaryTextColor,
+                )
+              ),
             ),
+          ],
+          leading: GestureDetector(
+                onTap: () {
+                  print('pressed, exit');
+                  oldSnapshotProduct = null;
+                  Navigator.pop(context);
+                },
+                child: Icon(
+                  Icons.clear,
+                  size: 24,
+                  color: ColorsParcelo.PrimaryTextColor,
+                )
+              ),
         ),
     ]
         )
