@@ -4,7 +4,17 @@ import 'package:parcelo/customWidget/customExpanded.dart';
 
 import '../colorsParcelo.dart';
 
-Widget specificList(BuildContext context, String title, String description, bool showArrow, Color textColor) {
+Widget specificList(BuildContext context, String title, String description,  bool showDescription, bool showArrow, Color textColor, bool isSmall) {
+  double titleSize;
+  double iconSize;
+  if (isSmall) {
+    titleSize = ArgParcelo.productCompany;
+    iconSize = 25;
+  } else {
+    titleSize = ArgParcelo.header;
+    iconSize = 30;
+  }
+
   return GestureDetector(
     onTap: () {
       print('pressed, ' + title);
@@ -21,20 +31,23 @@ Widget specificList(BuildContext context, String title, String description, bool
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   color: textColor,
-                  fontSize: ArgParcelo.header,
+                  fontSize: titleSize,
                   fontWeight: FontWeight.w500
                 ),
               ),
 
-              Padding(padding: EdgeInsets.only(top: 3),),
+              Visibility(visible: showDescription, child: Padding(padding: EdgeInsets.only(top: 3),)),
 
-              Text(
-                description,
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    color: textColor,
-                    fontSize: ArgParcelo.subHeader,
-                  fontStyle: FontStyle.normal
+              Visibility(
+                visible: showDescription,
+                  child: Text(
+                  description,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      color: textColor,
+                      fontSize: ArgParcelo.subHeader,
+                    fontStyle: FontStyle.normal
+                  ),
                 ),
               )
             ],
@@ -47,7 +60,7 @@ Widget specificList(BuildContext context, String title, String description, bool
             visible: showArrow,
             child: Icon(
               Icons.keyboard_arrow_right,
-              size: 30,
+              size: iconSize,
               color: ColorsParcelo.PrimaryTextColor,
             ),
           ),

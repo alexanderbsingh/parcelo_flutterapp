@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:parcelo/cells/categoriesCell.dart';
+import 'package:parcelo/models/category.dart';
+import 'package:parcelo/network/services/category_service.dart';
 
 import '../colorsParcelo.dart';
 import '../main.dart';
@@ -28,7 +31,6 @@ class Search extends StatelessWidget {
                       )
                   ),
                 ),
-
                 Expanded(
                   child: Container(
                     height: 20,
@@ -44,6 +46,24 @@ class Search extends StatelessWidget {
             ),
             Divider(
               color: Colors.black26,
+            ),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.only(top: 10),
+                child: FutureBuilder(
+                  future: fetchCategories(),
+                  builder: (context, snapshot) {
+                    var categories = snapshot.data as List<Category>;
+                    return ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemBuilder: (context, pos) {
+                        return categoriesCell(context, categories[pos]);
+                      },
+                      itemCount: categories.length,
+                    );
+                  }
+                ),
+              ),
             )
           ],
         )

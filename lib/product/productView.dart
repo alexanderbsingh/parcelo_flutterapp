@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:parcelo/customWidget/customExpanded.dart';
 import 'package:parcelo/globalVar.dart';
 import 'package:parcelo/models/price.dart';
 import 'package:parcelo/models/product.dart';
 import 'package:parcelo/network/services/product_service.dart';
+import 'package:parcelo/product/bottomBar.dart';
 import 'package:parcelo/product/productInfo.dart';
 import 'package:parcelo/product/productTop.dart';
 
@@ -32,8 +34,6 @@ class _ProductViewState extends State<ProductView> {
 
   @override
   Widget build(BuildContext context) {
-    
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -50,26 +50,18 @@ class _ProductViewState extends State<ProductView> {
                 strPrice = sortByPrice(product.prices)[0].price.toString();
                 imgURL = sortByPrice(product.prices)[0].store.logo.toString();
               }
-              return ListView(  
-                padding: EdgeInsets.only(top: 0),
-                children: <Widget>[
-                  productTop(context, product, imgURL),
-                  productInfo(context, product, strPrice),
-                
-                ],
-              );
+              return content(context, product, imgURL, strPrice);
             }
             else if (oldSnapshotProduct != null) {
               print('oldSnapShotProduct');
               ProductFull product = oldSnapshotProduct;
-              return ListView(   
-                padding: EdgeInsets.only(top: 0),
-                children: <Widget>[
-                  productTop(context, product, imgURL),
-                  productInfo(context, product, strPrice),
-                
-                ],
-              );
+              if (price != null) {
+                strPrice = price.toString();
+              } else {
+                strPrice = sortByPrice(product.prices)[0].price.toString();
+                imgURL = sortByPrice(product.prices)[0].store.logo.toString();
+              }
+              return content(context, product, imgURL, strPrice);
             } else if (snapshot.connectionState == ConnectionState.none) {
               return Container(height: 10, width: 10, color: Colors.white,);
             } else if (snapshot.connectionState == ConnectionState.active) {
@@ -80,42 +72,45 @@ class _ProductViewState extends State<ProductView> {
             }
           },
         ),
-        AppBar(
-          backgroundColor: Colors.transparent,
-          brightness: Brightness.light,
-          elevation: 0,
-          actions: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(right: ArgParcelo.margin),
-              child: GestureDetector(
-                onTap: () {
-                  print('pressed, save');
-                  isLiked = !isLiked;
-                  setState(() {});
-                },
-                child: Icon(
-                  isLiked ? Icons.favorite : Icons.favorite_border,                        
-                  size: 24,
-                  color: ColorsParcelo.PrimaryTextColor,
-                )
+        Container(
+          height: MediaQuery.of(context).padding.top + 56,
+          child: AppBar(
+            backgroundColor: Colors.transparent,
+            brightness: Brightness.light,
+            elevation: 0,
+            actions: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(right: ArgParcelo.margin),
+                child: GestureDetector(
+                  onTap: () {
+                    print('pressed, save');
+                    isLiked = !isLiked;
+                    setState(() {});
+                  },
+                  child: Icon(
+                    isLiked ? Icons.favorite : Icons.favorite_border,                        
+                    size: 24,
+                    color: ColorsParcelo.PrimaryTextColor,
+                  )
+                ),
               ),
-            ),
-          ],
-          leading: GestureDetector(
-                onTap: () {
-                  print('pressed, exit');
-                  oldSnapshotProduct = null;
-                  Navigator.pop(context);
-                },
-                child: Icon(
-                  Icons.clear,
-                  size: 24,
-                  color: ColorsParcelo.PrimaryTextColor,
-                )
-              ),
+            ],
+            leading: GestureDetector(
+                  onTap: () {
+                    print('pressed, exit');
+                    oldSnapshotProduct = null;
+                    Navigator.pop(context);
+                  },
+                  child: Icon(
+                    Icons.clear,
+                    size: 24,
+                    color: ColorsParcelo.PrimaryTextColor,
+                  )
+                ),
+          ),
         ),
-    ]
-        )
+        ],
+        ),
       );
   }
 }
@@ -124,5 +119,90 @@ List<PriceProduct> sortByPrice(List<PriceProduct> prices) {
   prices.sort((a, b) => a.price.compareTo(b.price));
   List<PriceProduct> sortedByPrice = prices;
   return sortedByPrice;
+}
+
+Widget content(BuildContext context, ProductFull product, String imgURL, String strPrice){
+ return Container(
+   child: Column(
+     children: <Widget>[
+       Expanded(
+          child: ListView(   
+           padding: EdgeInsets.only(top: 0),
+           children: <Widget>[
+             productTop(context, product, imgURL),
+             productInfo(context, product, strPrice),
+           ],
+         ),
+       ),
+
+       Container(
+         padding: EdgeInsets.all(ArgParcelo.margin),
+         height: MediaQuery.of(context).padding.bottom != 0 ? 60 + MediaQuery.of(context).padding.bottom : 84,
+         alignment: Alignment.topLeft,
+         decoration: BoxDecoration(
+           color: Colors.white,
+           boxShadow: [BoxShadow(
+            color: Colors.black12,
+            blurRadius: 17.0,
+          ),]
+         ),
+         child: Row(
+           children: <Widget>[
+             GestureDetector(
+               onTap: () {
+                 print('pressed multi func');
+               },
+                child: Container(
+                alignment: Alignment.center,
+                height: 44,
+                width: 126,
+                decoration: BoxDecoration(
+                  color: ColorsParcelo.DarkGreyColor,
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(22)
+                ),
+                child: Text(
+                  'Multi func',
+                  style: TextStyle(
+                    color: ColorsParcelo.PrimaryTextColor,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16
+                  )
+                ),
+                ),
+             ),
+
+             Expanded(
+               child: GestureDetector(
+               onTap: () {
+                 print('pressed add to cart');
+               },
+                child: Container(
+                  margin: EdgeInsets.only(left: ArgParcelo.margin),
+                alignment: Alignment.center,
+                height: 44,
+                width: 126,
+                decoration: BoxDecoration(
+                  color: ColorsParcelo.PrimaryColor,
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(22)
+                ),
+                child: Text(
+                  'Add to Cart',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16
+                  )
+                ),
+                ),
+             ),
+             )
+           ],
+         ),
+       )
+     ],
+   ),
+ );
 }
   

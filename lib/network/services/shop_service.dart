@@ -4,11 +4,13 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:parcelo/models/store.dart';
 
+import '../../globalVar.dart';
+
 Future<List<Store>> fetchStores() async {
   List<Store> shops= new List<Store>();
 
   final response = await http.get(
-    'http://localhost:3000/api/shops/',
+    'http://' + host + ':3000/api/shops/',
   );
   final responseJson = json.decode(response.body);
   Iterable list = responseJson;
@@ -24,7 +26,7 @@ Future<StoreFull> fetchStore(String storeID) async {
   StoreFull store = new StoreFull();
 
   final response = await http.get(
-    'http://localhost:3000/api/shops/' + storeID,
+    'http://' + host + ':3000/api/shops/' + storeID,
   );
 
   Map storeMap = jsonDecode(response.body);

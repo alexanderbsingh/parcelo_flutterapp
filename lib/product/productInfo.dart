@@ -1,7 +1,7 @@
 import 'package:configurable_expansion_tile/configurable_expansion_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:parcelo/customWidget/expansionTileHeader.dart';
 import 'package:parcelo/models/product.dart';
-import 'package:parcelo/product/expansionTileHeader.dart';
 import 'package:parcelo/product/productInfoCell.dart';
 
 import '../argParcelo.dart';

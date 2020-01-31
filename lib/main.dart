@@ -41,7 +41,7 @@ class MainViewState extends State<MainView> with SingleTickerProviderStateMixin 
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarColor: Colors.white,
-        statusBarBrightness: Brightness.light
+        statusBarBrightness: Brightness.dark
     ));
     return Scaffold(
         backgroundColor: Colors.white,
@@ -52,7 +52,7 @@ class MainViewState extends State<MainView> with SingleTickerProviderStateMixin 
           elevation: 0,
         ),
         body: AnnotatedRegion<SystemUiOverlayStyle>(
-         value: SystemUiOverlayStyle.light,
+         value: SystemUiOverlayStyle.dark,
          child: PageView(
             controller: pageController,
             scrollDirection: Axis.horizontal,
