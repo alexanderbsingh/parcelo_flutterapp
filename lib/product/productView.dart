@@ -68,7 +68,6 @@ class _ProductViewState extends State<ProductView> {
               return Container(height: 10, width: 10, color: Colors.white,);
             } else if (snapshot.connectionState == ConnectionState.waiting){
               return Container(height: 10, width: 10, color: Colors.white,);
-              
             }
           },
         ),

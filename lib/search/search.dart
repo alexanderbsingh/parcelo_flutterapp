@@ -19,7 +19,7 @@ class Search extends StatelessWidget {
             Row(
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(right: 10),
+                  padding: EdgeInsets.only(left: 0, right: ArgParcelo.smallMargin),
                   child: GestureDetector(
                       onTap: () {
                         print('pressed, back');

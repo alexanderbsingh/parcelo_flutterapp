@@ -56,23 +56,32 @@ class _ProductsPageViewState extends State<ProductsPageView> {
           builder: (context, snapshot) {
             var category = snapshot.data as CategoryFull;
             var products = category.products;
-            return GridView.builder(
-              padding: EdgeInsets.only(left: ArgParcelo.margin, right: ArgParcelo.margin, top: ArgParcelo.smallMargin, bottom: MediaQuery.of(context).padding.bottom),
-              scrollDirection: Axis.vertical,
-              itemBuilder: (context, pos) {
-                return Container(
-                  alignment: Alignment.center,
-                  child: largeProductCell(context, products[pos])
-                  );
-              },
-              itemCount: products.length, 
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, 
-                crossAxisSpacing: 10, 
-                mainAxisSpacing: 0,
-                childAspectRatio: (61/100)
-                )
-              );
+              if (snapshot.connectionState == ConnectionState.done) {              
+                return GridView.builder(
+                  padding: EdgeInsets.only(left: ArgParcelo.margin, right: ArgParcelo.margin, top: ArgParcelo.smallMargin, bottom: MediaQuery.of(context).padding.bottom),
+                  scrollDirection: Axis.vertical,
+                  itemBuilder: (context, pos) {
+                    return Container(
+                      alignment: Alignment.center,
+                      child: largeProductCell(context, products[pos])
+                      );
+                  },
+                  itemCount: products.length, 
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, 
+                    crossAxisSpacing: 10, 
+                    mainAxisSpacing: 0,
+                    childAspectRatio: (61/100)
+                    )
+                );
+            } else if (snapshot.connectionState == ConnectionState.none) {
+              return Container(height: 10, width: 10, color: Colors.white,);
+            } else if (snapshot.connectionState == ConnectionState.active) {
+              return Container(height: 10, width: 10, color: Colors.white,);
+            } else if (snapshot.connectionState == ConnectionState.waiting){
+              return Container(height: 10, width: 10, color: Colors.white,);
+              
+            }
           }
         ),
       ),
