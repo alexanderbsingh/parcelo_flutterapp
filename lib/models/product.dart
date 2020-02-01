@@ -16,6 +16,7 @@ class Product {
   final int depth;
   final int weight;
   final List<dynamic> images;
+  final List<dynamic> details;
   final List<dynamic> alternatives;
   final String barcode;
   final String createdAt;
@@ -23,7 +24,7 @@ class Product {
   final String categories;
   final List<dynamic> prices;
 
-  Product({this.id, this.slug, this.name, this.description, this.serialNumber, this.manufacturer, this.color, this.multiFunction, this.exclusive, this.width, this.height, this.depth, this.weight, this.images, this.alternatives, this.barcode, this.createdAt, this.updatedAt, this.categories, this.prices});
+  Product({this.id, this.slug, this.name, this.description, this.serialNumber, this.manufacturer, this.color, this.multiFunction, this.exclusive, this.width, this.height, this.depth, this.weight, this.images, this. details, this.alternatives, this.barcode, this.createdAt, this.updatedAt, this.categories, this.prices});
 
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
@@ -41,6 +42,7 @@ class Product {
       depth: json['depth'],
       weight: json['weight'],
       images: json['images'],
+      details: json['details'],
       alternatives: json['alternatives'],
       barcode: json['barcode'],
       createdAt: json['createdAt'],

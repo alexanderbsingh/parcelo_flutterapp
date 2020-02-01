@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:parcelo/argParcelo.dart';
 import 'package:parcelo/cells/categoriesCell.dart';
 import 'package:parcelo/models/category.dart';
 import 'package:parcelo/network/services/category_service.dart';
@@ -46,6 +47,18 @@ class Search extends StatelessWidget {
             ),
             Divider(
               color: Colors.black26,
+            ),
+
+            Padding(
+              padding: EdgeInsets.only(top: ArgParcelo.margin, right: ArgParcelo.margin, left: ArgParcelo.margin,),
+              child: Text('Categories',
+                style: TextStyle(
+                  fontSize: ArgParcelo.productTitleSmall,
+                  fontWeight: FontWeight.w800,
+                  color: ColorsParcelo.PrimaryTextColor
+
+                ),
+              ),
             ),
             Expanded(
               child: Padding(

@@ -19,3 +19,19 @@ Future<List<Category>> fetchCategories() async {
 
   return categories;
 }
+
+Future<CategoryFull> fetchCategory(String categorySlug) async {
+  CategoryFull category = new CategoryFull();
+
+  final response = await http.get(
+    'http://' + host + ':3000/api/categories/' + categorySlug,
+  );
+
+  Map categoryMap = jsonDecode(response.body);
+  category = CategoryFull.fromJson(categoryMap);
+
+  print(category.name.toString() + " loaded");
+  print(categoryMap.toString() + " loaded this json response");
+
+  return category;
+}

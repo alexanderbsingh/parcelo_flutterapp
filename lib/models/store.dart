@@ -59,8 +59,6 @@ class StoreFull {
   StoreFull({this.id, this.slug, this.name, this.description, this.logo, this.banner, this.type, this.prices});
 
   factory StoreFull.fromJson(Map<String, dynamic> json) {
-    
-
     return StoreFull(
       id: json['id'],
       slug: json['slug'],
