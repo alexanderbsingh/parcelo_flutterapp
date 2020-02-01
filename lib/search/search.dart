@@ -67,13 +67,21 @@ class Search extends StatelessWidget {
                   future: fetchCategories(),
                   builder: (context, snapshot) {
                     var categories = snapshot.data as List<Category>;
-                    return ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      itemBuilder: (context, pos) {
-                        return categoriesCell(context, categories[pos]);
-                      },
-                      itemCount: categories.length,
-                    );
+                    if (snapshot.connectionState == ConnectionState.done) {              
+                      return ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        itemBuilder: (context, pos) {
+                          return categoriesCell(context, categories[pos]);
+                        },
+                        itemCount: categories.length,
+                      );
+                    } else if (snapshot.connectionState == ConnectionState.none) {
+                      return Container(height: 10, width: 10, color: Colors.white,);
+                    } else if (snapshot.connectionState == ConnectionState.active) {
+                      return Container(height: 10, width: 10, color: Colors.white,);
+                    } else if (snapshot.connectionState == ConnectionState.waiting){
+                      return Container(height: 10, width: 10, color: Colors.white,);
+                    }
                   }
                 ),
               ),

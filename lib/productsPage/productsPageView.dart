@@ -54,9 +54,9 @@ class _ProductsPageViewState extends State<ProductsPageView> {
         child: FutureBuilder(
           future: fetchCategory(category.slug),
           builder: (context, snapshot) {
-            var category = snapshot.data as CategoryFull;
-            var products = category.products;
-              if (snapshot.connectionState == ConnectionState.done) {              
+              if (snapshot.connectionState == ConnectionState.done) {     
+                var category = snapshot.data as CategoryFull;
+                var products = category.products;         
                 return GridView.builder(
                   padding: EdgeInsets.only(left: ArgParcelo.margin, right: ArgParcelo.margin, top: ArgParcelo.smallMargin, bottom: MediaQuery.of(context).padding.bottom),
                   scrollDirection: Axis.vertical,
@@ -80,7 +80,6 @@ class _ProductsPageViewState extends State<ProductsPageView> {
               return Container(height: 10, width: 10, color: Colors.white,);
             } else if (snapshot.connectionState == ConnectionState.waiting){
               return Container(height: 10, width: 10, color: Colors.white,);
-              
             }
           }
         ),
