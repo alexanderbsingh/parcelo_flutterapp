@@ -29,7 +29,7 @@ Widget largeProductCell(BuildContext context, Product product) {
               child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(product.images[0]),
+                  image: NetworkImage(product.image),
                   fit: BoxFit.fitHeight
                 ),
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:parcelo/network/services/post/signIn_service.dart';
 
 import 'package:parcelo/profile/profile.dart';
 import 'package:parcelo/search/search.dart';
@@ -43,6 +44,8 @@ class MainViewState extends State<MainView> with SingleTickerProviderStateMixin 
         statusBarColor: Colors.white,
         statusBarBrightness: Brightness.dark
     ));
+
+    makeSignInRequest();
     return Scaffold(
         backgroundColor: Colors.white,
         primary: false,

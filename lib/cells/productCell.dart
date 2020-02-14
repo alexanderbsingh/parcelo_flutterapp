@@ -23,7 +23,7 @@ Widget productCell(BuildContext context, Product product) {
           width: 125,
           decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage(product.images[0]),
+                image: NetworkImage(product.image),
                 fit: BoxFit.fitHeight
               ),
               shape: BoxShape.rectangle,
@@ -56,7 +56,7 @@ Widget productCell(BuildContext context, Product product) {
               alignment: Alignment.bottomRight,
               padding: EdgeInsets.only(right: 4),
               width: 125,
-              child: Text('',
+              child: Text(''/*product.prices[0].price.toString()*/,
                 style: TextStyle(
                     color: ColorsParcelo.PrimaryColor,
                     fontWeight: FontWeight.w600,

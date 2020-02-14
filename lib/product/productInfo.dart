@@ -88,10 +88,6 @@ Widget productInfo(BuildContext context, ProductFull product, String price) {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 6),
-                child: productInfoCell(context, 'Serial Number', product.serialNumber.toString()),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 6),
                 child: productInfoCell(context, 'Height', product.height.toString()),
               ),
               Padding(
