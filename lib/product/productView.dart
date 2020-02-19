@@ -161,7 +161,7 @@ Widget content(BuildContext context, ProductFull product, String imgURL, String 
                   borderRadius: BorderRadius.circular(22)
                 ),
                 child: Text(
-                  'Multi func',
+                  'Antal (1)',
                   style: TextStyle(
                     color: ColorsParcelo.PrimaryTextColor,
                     fontWeight: FontWeight.w600,
@@ -187,7 +187,7 @@ Widget content(BuildContext context, ProductFull product, String imgURL, String 
                   borderRadius: BorderRadius.circular(22)
                 ),
                 child: Text(
-                  'Add to Cart',
+                  'Lägg i kundvagn',
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w600,
