@@ -68,7 +68,7 @@ class _ProductsPageViewState extends State<ProductsPageView> {
                   },
                   itemCount: products.length, 
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2, 
+                    crossAxisCount: 3, 
                     crossAxisSpacing: 10, 
                     mainAxisSpacing: 0,
                     childAspectRatio: (61/100)

@@ -45,16 +45,6 @@ class _StoreViewState extends State<StoreView> {
                     storeBottom(context, store),
                   ],
                 );
-              }
-              else if (oldSnapshotStore != null) {
-              StoreFull store = snapshot.data;
-                return ListView( 
-                  padding: EdgeInsets.only(top: 0),  
-                  children: <Widget>[
-                    storeTop(context, store),
-                    storeBottom(context, store),
-                  ]
-                );
               } else if (snapshot.connectionState == ConnectionState.none) {
                 return Container(height: 10, width: 10, color: Colors.white,);
               } else if (snapshot.connectionState == ConnectionState.active) {

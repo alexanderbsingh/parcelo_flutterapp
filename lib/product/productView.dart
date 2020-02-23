@@ -3,6 +3,7 @@ import 'package:parcelo/customWidget/customExpanded.dart';
 import 'package:parcelo/globalVar.dart';
 import 'package:parcelo/models/price.dart';
 import 'package:parcelo/models/product.dart';
+import 'package:parcelo/network/services/post/addToCart_service.dart';
 import 'package:parcelo/network/services/product_service.dart';
 import 'package:parcelo/product/bottomBar.dart';
 import 'package:parcelo/product/productInfo.dart';
@@ -175,6 +176,7 @@ Widget content(BuildContext context, ProductFull product, String imgURL, String 
                child: GestureDetector(
                onTap: () {
                  print('pressed add to cart');
+                 addToCart('73c29a76-8124-4d6c-8417-7d95dec9ed5e', product.id);
                },
                 child: Container(
                   margin: EdgeInsets.only(left: ArgParcelo.margin),

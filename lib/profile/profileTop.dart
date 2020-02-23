@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../argParcelo.dart';
 import '../colorsParcelo.dart';
 import '../main.dart';
 
@@ -24,8 +25,8 @@ Widget profileTop(BuildContext context) {
       Expanded(
         child: Container(
           height: 150,
-          padding: EdgeInsets.only(top: 3),
-          alignment: Alignment.centerRight,
+          padding: EdgeInsets.only(top: 3, left: ArgParcelo.margin *2),
+          alignment: Alignment.centerLeft,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,

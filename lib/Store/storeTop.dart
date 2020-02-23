@@ -20,7 +20,8 @@ Widget storeTop(BuildContext context, StoreFull store){
               image: DecorationImage(
                 image: NetworkImage(store.banner),
                 fit: BoxFit.cover
-              ),          
+              ),
+              color: Colors.white,
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.circular(ArgParcelo.cornerRadius)
             ),

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:parcelo/colorsParcelo.dart';
 import 'package:parcelo/customWidget/customExpanded.dart';
+import 'package:parcelo/models/product.dart';
 
 import '../argParcelo.dart';
 
-Widget cartCell() {
+Widget cartCell(ProductStore product) {
   return Container(
     height: 122,
     //color: ColorsParcelo.LightGreyColor,
@@ -18,7 +19,7 @@ Widget cartCell() {
               width: 120,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage('https://www.kindpng.com/picc/m/2-29588_download-diamond-necklace-transparent-background-for-gold-diamond.png'),
+                  image: NetworkImage(product.image),
                   fit: BoxFit.cover
                 ),
                 shape: BoxShape.rectangle,
@@ -32,7 +33,7 @@ Widget cartCell() {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Text('Name',
+                  Text(product.name,
                     style: TextStyle(
                         color: ColorsParcelo.PrimaryTextColor,
                         fontWeight: FontWeight.w600,
@@ -42,7 +43,7 @@ Widget cartCell() {
 
                   Padding(
                     padding: EdgeInsets.only(top: 4, bottom: 4),
-                    child: Text('Manufacturer',
+                    child: Text(product.manufacturer,
                       style: TextStyle(
                           color: ColorsParcelo.SecondaryTextColor,
                           fontWeight: FontWeight.w500,

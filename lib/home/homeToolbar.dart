@@ -32,7 +32,7 @@ Widget homeToolbar(BuildContext context) {
       ),
       customExpanded(),
 
-      GestureDetector(
+      /*GestureDetector(
           onTap: () {
             print('pressed, filter home');
             Navigator.push(context, SlideBottomRoute(page: FilterHome()));
@@ -42,7 +42,7 @@ Widget homeToolbar(BuildContext context) {
             size: 24,
             color: ColorsParcelo.PrimaryTextColor,
           )
-      ),
+      ),*/
       Padding(
         padding: const EdgeInsets.only(left: 5, right: ArgParcelo.margin),
         child: GestureDetector(
