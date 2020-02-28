@@ -24,7 +24,7 @@ createOrder(CartModel cart) async {
 
 }
 
-List<OrderProduct> orderProducts(List<ProductStore> products) {
+List<OrderProduct> orderProducts(List<Product> products) {
     List<OrderProduct> productsList = new List();
 
     for (var n = products.length; n >= 0; n--) {

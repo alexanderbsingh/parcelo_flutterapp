@@ -5,7 +5,7 @@ import 'package:parcelo/customWidget/customExpanded.dart';
 
 import '../argParcelo.dart';
 
-Widget addressCell() {
+Widget addressCell(String locationName, String location) {
   return Padding(
     padding: EdgeInsets.only(right: ArgParcelo.smallMargin),
     child: Container(
@@ -24,7 +24,7 @@ Widget addressCell() {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              Text('Göteborg',
+              Text(locationName,
                 style: TextStyle(
                   fontWeight: FontWeight.w800,
                   fontSize: ArgParcelo.header,
@@ -32,7 +32,7 @@ Widget addressCell() {
                 ),
               ),
 
-              Text('Altarbacken 11',
+              Text(location,
                 style: TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: ArgParcelo.productCompany,

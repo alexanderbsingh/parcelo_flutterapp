@@ -5,7 +5,7 @@ class CartModel {
   final String id;
   final int total;
   final String currency;
-  final List<ProductStore> products;
+  final List<Product> products;
   final String userId;
 
 
@@ -22,14 +22,14 @@ class CartModel {
   }
 }
 
-List<ProductStore> findProducts(List<dynamic> json) {
-    List<ProductStore> products = new List();
+List<Product> findProducts(List<dynamic> json) {
+    List<Product> products = new List();
     var num = 10;
 
     for (var n = num; n >= 0; n--) {
       try {
         print(Product.fromJson(json[num - n]).toString() + ' products');
-        products.add(ProductStore.fromJson(json[num - n]));
+        products.add(Product.fromJson(json[num - n]));
       } catch (e) {
         print(e);
         break;

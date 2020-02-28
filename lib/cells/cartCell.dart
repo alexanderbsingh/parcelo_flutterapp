@@ -5,7 +5,7 @@ import 'package:parcelo/models/product.dart';
 
 import '../argParcelo.dart';
 
-Widget cartCell(ProductStore product) {
+Widget cartCell(Product product) {
   return Container(
     height: 122,
     //color: ColorsParcelo.LightGreyColor,
@@ -88,7 +88,7 @@ Widget cartCell(ProductStore product) {
                     alignment: Alignment.bottomLeft,
                     padding: EdgeInsets.only(right: 4),
                     width: 125,
-                    child: Text('5 000 kr',
+                    child: Text('product.',
                       style: TextStyle(
                           color: ColorsParcelo.PrimaryColor,
                           fontWeight: FontWeight.w600,

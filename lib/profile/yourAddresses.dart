@@ -4,8 +4,8 @@ import 'package:parcelo/cells/addressCell.dart';
 import 'package:parcelo/colorsParcelo.dart';
 
 Widget yourAddresses(BuildContext context) {
-  var title = ['Göteborg'];
-  var subTitle = ['Altarbacken 11'];
+  var title = ['Hem', 'Jobbet'];
+  var subTitle = ['Altarbacken 11', 'Postgatan 5'];
 
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +34,7 @@ Widget yourAddresses(BuildContext context) {
               if (pos == 0) {
                 return Padding(padding: EdgeInsets.only(left: ArgParcelo.margin),);
               } else if (pos < title.length +1 && pos != 0) {
-                return addressCell();
+                return addressCell(title[pos -1], subTitle[pos -1]);
               } else {
                 return Container(
                   height: 80,

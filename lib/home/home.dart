@@ -75,8 +75,8 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           indicator: UnderlineTabIndicator(
                             insets: EdgeInsets.only(right: ArgParcelo.smallMargin, bottom: 0),
                             borderSide: BorderSide(
-                width: 1.4,
-                color: ColorsParcelo.PrimaryTextColor
+                              width: 1.4,
+                              color: ColorsParcelo.PrimaryTextColor
                             ),
                           ),
                           isScrollable: true,
@@ -92,7 +92,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   ),
 
                   Container(
-                    height: 740,
+                    height: 930,
                     padding: EdgeInsets.only(left: 0, right: 0),
                     child: TabBarView(
                         controller: _tabController,
