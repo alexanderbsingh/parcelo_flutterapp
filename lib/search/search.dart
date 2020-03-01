@@ -72,7 +72,7 @@ class Search extends StatelessWidget {
                   future: fetchCategories(),
                   builder: (context, snapshot) {
                     var categories = snapshot.data as List<Category>;
-                    if (snapshot.connectionState == ConnectionState.done) {              
+                    if (snapshot.connectionState == ConnectionState.done) {
                       return ListView.builder(
                         scrollDirection: Axis.vertical,
                         itemBuilder: (context, pos) {
