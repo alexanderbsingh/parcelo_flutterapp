@@ -8,12 +8,21 @@ import 'package:parcelo/models/product2_remove.dart';
 import 'package:parcelo/network/services/cart_service.dart';
 import 'package:parcelo/network/services/post/createOrder_service.dart';
 import 'package:parcelo/network/services/post/removeFromCart_service.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../argParcelo.dart';
 import '../colorsParcelo.dart';
 
-class Cart extends StatelessWidget {
+class Cart extends StatefulWidget {
+  @override
+  _CartState createState() => _CartState();
+}
+
+class _CartState extends State<Cart> {
+  final RefreshController _refreshController = RefreshController();
+
   CartModel cartModel;
+
   @override
   Widget build(BuildContext context) {
     isInCart = true;
@@ -27,11 +36,19 @@ class Cart extends StatelessWidget {
             return Stack(
                 alignment: Alignment.bottomLeft,
                 children: <Widget>[
-                  ListView.builder(
-                    itemBuilder: (context, pos) {
-                      return cartCell(cartModel.products[pos]);
+                  SmartRefresher(
+                    controller: _refreshController,
+                    enablePullDown: true,
+                    onRefresh: () async {
+                      _refreshController.refreshCompleted();
+                      setState(() {});
                     },
-                    itemCount: cartModel.products.length,
+                      child: ListView.builder(
+                      itemBuilder: (context, pos) {
+                        return cartCell(cartModel.products[pos]);
+                      },
+                      itemCount: cartModel.products.length,
+                    ),
                   ),
                   Container(
                     padding: EdgeInsets.all(ArgParcelo.margin),
@@ -130,23 +147,8 @@ class Cart extends StatelessWidget {
       },
     );
   }
-}
 
-String calcTotal(List<Product2> products){
-  int total = 0;
-
-  for (var n = products.length; n >= 0; n--) {
-    try {
-      total = total + products[n  -1].prices[0].price;
-    } catch (e) {
-      print(e);
-      break;
-    }
-  }
-  return total.toString() + ' kr';
-}
-
-void _showOrderDialog(BuildContext context, CartModel cartModel) {
+  _showOrderDialog(BuildContext context, CartModel cartModel) {
     // flutter defined function
     showDialog(
       context: context,
@@ -163,10 +165,13 @@ void _showOrderDialog(BuildContext context, CartModel cartModel) {
               style: TextStyle(
                 color: ColorsParcelo.PrimaryColor
               ),),
-              onPressed: () {
-                createOrder(cartModel);
-                emptyCart(cartModel);
+              onPressed: () async {
+                await createOrder(cartModel);
+                await emptyCart(cartModel);
                 Navigator.of(context).pop();
+                setState(() {
+                  
+                });
                 
               },
             ),
@@ -175,8 +180,24 @@ void _showOrderDialog(BuildContext context, CartModel cartModel) {
       },
     );
   }
+}
 
-  void _showNoOrderDialog(BuildContext context) {
+String calcTotal(List<Product2> products){
+  int total = 0;
+
+  for (var n = products.length; n >= 0; n--) {
+    try {
+      total = total + products[n  -1].prices[0].price;
+    } catch (e) {
+      print(e);
+      break;
+    }
+  }
+  return total.toString() + ' kr';
+}
+
+
+  _showNoOrderDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -189,7 +210,6 @@ void _showOrderDialog(BuildContext context, CartModel cartModel) {
               child: new Text("ok"),
               onPressed: () {
                 Navigator.of(context).pop();
-                
               },
             ),
           ],
