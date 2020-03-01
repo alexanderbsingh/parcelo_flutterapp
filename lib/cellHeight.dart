@@ -2,7 +2,7 @@ double cellHeight(String type) {
   switch (type) {
     case "top":
       {
-        return 218;
+        return 270;
       }
       break;
 

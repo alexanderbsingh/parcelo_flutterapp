@@ -24,15 +24,15 @@ class Profile extends StatelessWidget {
               padding: EdgeInsets.only(left: ArgParcelo.margin, right: ArgParcelo.margin),
               child: Column(
                 children: <Widget>[
-                  specificList(context, 'Your Favourites', 'Everything you hearted', true, true, ColorsParcelo.PrimaryTextColor, false, 'toWhere'),
-                  specificList(context, 'All orders', 'Everyone of your orders, latest to the first', true, true, ColorsParcelo.PrimaryTextColor, false, 'toWhere'),
+                  specificList(context, 'Favoriter', 'Allt du gillat', true, true, ColorsParcelo.PrimaryTextColor, false, 'toWhere'),
+                  specificList(context, 'Beställningshistorik', 'Alla dina beställningar, senaste till äldsta', true, true, ColorsParcelo.PrimaryTextColor, false, 'toWhere'),
                   Padding(
                     padding: EdgeInsets.only(top: 14, bottom: 8),
                     child: Divider(color: Colors.black26, height: 0.5,),
                   ),
-                  specificList(context, 'Go Pro', 'Unlimited Free Dilivery', true, false, Colors.orangeAccent, false, 'toWhere'),
-                  specificList(context, 'Invite friends', 'Get 1 Frree Dilivery per friend', true, false, ColorsParcelo.PrimaryTextColor, false, 'toWhere'),
-                  specificList(context, 'Gift Cards', 'The perfect gift', true, false, ColorsParcelo.PrimaryTextColor, false, 'toWhere'),
+                  specificList(context, 'Go Pro', 'Alltid gratis leverans', true, false, Colors.orangeAccent, false, 'toWhere'),
+                  specificList(context, 'Bjud in en vän', 'Få 10 kr rabbatt per friend', true, false, ColorsParcelo.PrimaryTextColor, false, 'toWhere'),
+                  specificList(context, 'Presentkort', 'Den perfekta presenten', true, false, ColorsParcelo.PrimaryTextColor, false, 'toWhere'),
                 ],
               ),
             )

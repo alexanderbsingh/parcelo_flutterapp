@@ -61,8 +61,8 @@ Widget largeProductCell(BuildContext context, Product product) {
             Container(
               alignment: Alignment.bottomRight,
               padding: EdgeInsets.only(right: 4),
-              width: 125,
-              child: Text('',
+              width: (MediaQuery.of(context).size.width - 2 * ArgParcelo.margin -20)/3 -2,
+              child: Text(product.prices[0].price.toString() + ' kr',
                 style: TextStyle(
                     color: ColorsParcelo.PrimaryColor,
                     fontWeight: FontWeight.w600,

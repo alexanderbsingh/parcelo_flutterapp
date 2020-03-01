@@ -8,4 +8,6 @@ var oldSnapshotProduct;
 
 var userToken;
 
-var host = 'localhost';
+var tabKey;
+
+var host = '192.168.43.2';

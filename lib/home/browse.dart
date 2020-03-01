@@ -16,7 +16,7 @@ class Browse extends StatefulWidget {
 }
 
 class _BrowseState extends State<Browse> {
-  var typeHeader = ['', 'Recent', 'Only on Parcelo'];
+  var typeHeader = ['', 'Nyligen visat', 'Bara hos Parcelo'];
   var typeList = ['top', 'product', 'store'];  
 
   @override

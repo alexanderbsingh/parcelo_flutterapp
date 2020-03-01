@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:parcelo/colorsParcelo.dart';
 import 'package:parcelo/customWidget/customExpanded.dart';
 import 'package:parcelo/models/product.dart';
+import 'package:parcelo/models/product2_remove.dart';
+import 'package:parcelo/network/services/post/removeFromCart_service.dart';
 
 import '../argParcelo.dart';
 
-Widget cartCell(Product product) {
+Widget cartCell(Product2 product) {
   return Container(
     height: 122,
-    //color: ColorsParcelo.LightGreyColor,
     child: Padding(
       padding: EdgeInsets.only(left: ArgParcelo.margin, right: ArgParcelo.margin, top: ArgParcelo.margin /2, bottom: ArgParcelo.margin /2),
       child: Row(
@@ -52,7 +53,7 @@ Widget cartCell(Product product) {
                     ),
                   ),
 
-                  Text('Color: Silver',
+                  Text('',
                     style: TextStyle(
                         color: ColorsParcelo.SecondaryTextColor,
                         fontWeight: FontWeight.w500,
@@ -64,17 +65,17 @@ Widget cartCell(Product product) {
                     padding: EdgeInsets.only(top: 4),
                     child: Row(
                       children: <Widget>[
-                        Text('Size: M, ',
+                        Text('Qty:',
                           style: TextStyle(
                               color: ColorsParcelo.SecondaryTextColor,
                               fontWeight: FontWeight.w500,
                               fontSize: ArgParcelo.productCompany
                           ),
                         ),
-                        Text('Qty: 1',
+                        Text(' 1',
                           style: TextStyle(
                               color: ColorsParcelo.SecondaryTextColor,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w800,
                               fontSize: ArgParcelo.productCompany
                           ),
                         ),
@@ -88,7 +89,7 @@ Widget cartCell(Product product) {
                     alignment: Alignment.bottomLeft,
                     padding: EdgeInsets.only(right: 4),
                     width: 125,
-                    child: Text('product.',
+                    child: Text(product.prices[0].price.toString() + ' kr',
                       style: TextStyle(
                           color: ColorsParcelo.PrimaryColor,
                           fontWeight: FontWeight.w600,
@@ -103,15 +104,16 @@ Widget cartCell(Product product) {
             customExpanded(),
 
             GestureDetector(
-                    onTap: () {
-                      print('pressed, options');
-                    },
-                    child: Icon(
-                      Icons.more_vert,
-                      size: 24,
-                      color: ColorsParcelo.PrimaryTextColor,
-                    )
-                  ),
+              onTap: () {
+                print('pressed, remove');
+                removeItemFromCart(product.id);
+              },
+              child: Icon(
+                Icons.close,
+                size: 24,
+                color: ColorsParcelo.PrimaryTextColor,
+              )
+            ),
         ],
       ),
     ),

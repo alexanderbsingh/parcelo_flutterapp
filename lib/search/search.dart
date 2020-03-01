@@ -33,14 +33,19 @@ class Search extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child: Container(
-                    height: 20,
-                    alignment: Alignment.centerLeft,
-                    child:  TextField(
-                      decoration: InputDecoration.collapsed(
-                        hintText: 'Search',
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        height: 45,
+                        alignment: Alignment.topLeft,
+                        child:  TextField(
+                          decoration: InputDecoration.collapsed(
+                            hintText: 'Sök',
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                 )
               ],
@@ -51,7 +56,7 @@ class Search extends StatelessWidget {
 
             Padding(
               padding: EdgeInsets.only(top: ArgParcelo.margin, right: ArgParcelo.margin, left: ArgParcelo.margin,),
-              child: Text('Categories',
+              child: Text('Kategorier',
                 style: TextStyle(
                   fontSize: ArgParcelo.productTitleSmall,
                   fontWeight: FontWeight.w800,

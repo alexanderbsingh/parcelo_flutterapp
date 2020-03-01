@@ -143,12 +143,13 @@ Widget content(BuildContext context, ProductFull product, String imgURL, String 
            color: Colors.white,
            boxShadow: [BoxShadow(
             color: Colors.black12,
-            blurRadius: 17.0,
+            blurRadius: 0//17.0,
           ),]
          ),
          child: Row(
+           mainAxisAlignment: MainAxisAlignment.end,
            children: <Widget>[
-             GestureDetector(
+             /*GestureDetector(
                onTap: () {
                  print('pressed multi func');
                },
@@ -170,35 +171,33 @@ Widget content(BuildContext context, ProductFull product, String imgURL, String 
                   )
                 ),
                 ),
-             ),
+             ),*/
 
-             Expanded(
-               child: GestureDetector(
-               onTap: () {
-                 print('pressed add to cart');
-                 addToCart('73c29a76-8124-4d6c-8417-7d95dec9ed5e', product.id);
-               },
-                child: Container(
-                  margin: EdgeInsets.only(left: ArgParcelo.margin),
-                alignment: Alignment.center,
-                height: 44,
-                width: 126,
-                decoration: BoxDecoration(
-                  color: ColorsParcelo.PrimaryColor,
-                  shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.circular(22)
-                ),
-                child: Text(
-                  'Lägg i kundvagn',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16
-                  )
-                ),
-                ),
-             ),
-             )
+             /*Expanded(
+               child:*/ Container(
+               width: 200,
+                 child: FlatButton(onPressed: (){
+                   print('pressed add to cart');
+                   addToCart('73c29a76-8124-4d6c-8417-7d95dec9ed5e', product.id);
+                 },
+                   color: ColorsParcelo.PrimaryColor,
+                   shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(22.0)),
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 44,
+                      width: 200,
+                      child: Text(
+                        'Lägg i kundvagn',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16
+                        )
+                  ),
+                  ),
+                 )
+               ),
+             //)
            ],
          ),
        )

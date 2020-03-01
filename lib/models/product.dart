@@ -55,10 +55,10 @@ class ProductFull {
   final String color;
   final String multiFunction;
   final bool exclusive;
-  final int width;
-  final int height;
-  final int depth;
-  final int weight;
+  final String width;
+  final String height;
+  final String depth;
+  final String weight;
   final List<dynamic> images;
   final List<dynamic> alternatives;
   final List<dynamic> categories;
@@ -79,10 +79,10 @@ class ProductFull {
       color: json['color'],
       multiFunction: json['multiFunction'],
       exclusive: json['exclusive'],
-      width: json['width'],
-      height: json['height'],
-      depth: json['depth'],
-      weight: json['weight'],
+      width: json['width'].toString(),
+      height: json['height'].toString(),
+      depth: json['depth'].toString(),
+      weight: json['weight'].toString(),
       images: json['images'],
       alternatives: json['alternatives'],
       categories: json['categories'],
@@ -95,12 +95,11 @@ class ProductFull {
 
 List<PriceProduct> findPrices(List<dynamic> json) {
     List<PriceProduct> pricesUnsorted = new List();
-    var num = 10;
 
-    for (var n = num; n >= 0; n--) {
+    for (var n = json.length; n >= 0; n--) {
       try {
-        print(PriceProduct.fromJson(json[num - n]).toString() + ' prices');
-        pricesUnsorted.add(PriceProduct.fromJson(json[num - n]));
+        print(PriceProduct.fromJson(json[n -1]).toString() + ' prices');
+        pricesUnsorted.add(PriceProduct.fromJson(json[n -1]));
       } catch (e) {
         print(e);
         break;

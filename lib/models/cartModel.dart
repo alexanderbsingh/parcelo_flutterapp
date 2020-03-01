@@ -1,13 +1,12 @@
 
-import 'package:parcelo/models/product.dart';
+import 'package:parcelo/models/product2_remove.dart';
 
 class CartModel {
   final String id;
   final int total;
   final String currency;
-  final List<Product> products;
+  final List<Product2> products;
   final String userId;
-
 
   CartModel({this.id, this.total, this.currency, this.products, this.userId});
 
@@ -17,19 +16,17 @@ class CartModel {
       total: json['total'],
       currency: json['currency'],
       products: findProducts(json['products']),
-      userId: json['userId']
+      userId: json['userId'],
     );
   }
 }
 
-List<Product> findProducts(List<dynamic> json) {
-    List<Product> products = new List();
-    var num = 10;
+List<Product2> findProducts(List<dynamic> json) {
+    List<Product2> products = new List();
 
-    for (var n = num; n >= 0; n--) {
+    for (var n = json.length; n >= 0; n--) {
       try {
-        print(Product.fromJson(json[num - n]).toString() + ' products');
-        products.add(Product.fromJson(json[num - n]));
+        products.add(Product2.fromJson(json[n-1]));
       } catch (e) {
         print(e);
         break;

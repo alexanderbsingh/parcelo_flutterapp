@@ -56,7 +56,7 @@ Widget productCell(BuildContext context, Product product) {
               alignment: Alignment.bottomRight,
               padding: EdgeInsets.only(right: 4),
               width: 125,
-              child: Text(''/*product.prices[0].price.toString()*/,
+              child: Text(product.prices[0].price.toString() + ' kr',
                 style: TextStyle(
                     color: ColorsParcelo.PrimaryColor,
                     fontWeight: FontWeight.w600,

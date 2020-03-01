@@ -32,3 +32,20 @@ class PriceProduct {
     );
   }
 }
+
+class PriceProduct2 {
+  final String id;
+  final int price;
+  final String currency;
+
+  PriceProduct2({this.id, this.currency, this.price});
+
+  factory PriceProduct2.fromJson(Map<String, dynamic> json) {
+    return PriceProduct2(
+      id: json['id'],
+      price: json['price'],
+      currency: json['currency'],
+
+    );
+  }
+}

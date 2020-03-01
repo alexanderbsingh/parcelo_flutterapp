@@ -11,6 +11,7 @@ void main(){
   runApp(MaterialApp(
     title: 'Parcelo',
       theme: ThemeData(fontFamily: 'Asap'),
+      debugShowCheckedModeBanner: false,
       
       home: MainView()
   ));

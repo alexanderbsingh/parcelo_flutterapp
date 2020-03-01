@@ -81,7 +81,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           ),
                           isScrollable: true,
                           controller: _tabController,
-                          tabs: [Text("Browse"), Text("Cart")],
+                          tabs: [Text("Upptäck"), Text("Kundvagn")],
                         ),
                       ],
                     ),
@@ -92,9 +92,10 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   ),
 
                   Container(
-                    height: 930,
+                    height: 860,
                     padding: EdgeInsets.only(left: 0, right: 0),
                     child: TabBarView(
+                        key: tabKey,
                         controller: _tabController,
                         children: [
                           Browse(),
