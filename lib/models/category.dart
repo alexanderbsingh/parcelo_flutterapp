@@ -49,10 +49,10 @@ class CategoryFull {
 
     for (var n = num; n >= 0; n--) {
       try {
-        print(Product.fromJson(json[num - n]).toString() + ' products');
+        //print(Product.fromJson(json[num - n]).toString() + ' products');
         products.add(Product.fromJson(json[num - n]));
       } catch (e) {
-        print(e);
+        //print(e);
         break;
       }
     }

@@ -15,7 +15,7 @@ Future<List<Category>> fetchCategories() async {
   Iterable list = responseJson;
   categories = list.map((shop) => Category.fromJson(shop)).toList();
 
-  print(categories.length.toString() + " categories loaded");
+  //print(categories.length.toString() + " categories loaded");
 
   return categories;
 }
@@ -30,8 +30,8 @@ Future<CategoryFull> fetchCategory(String categorySlug) async {
   Map categoryMap = jsonDecode(response.body);
   category = CategoryFull.fromJson(categoryMap);
 
-  print(category.name.toString() + " loaded");
-  print(categoryMap.toString() + " loaded this json response");
+  //print(category.name.toString() + " loaded");
+  //print(categoryMap.toString() + " loaded this json response");
 
   return category;
 }

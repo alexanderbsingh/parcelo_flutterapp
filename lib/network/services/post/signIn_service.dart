@@ -11,5 +11,5 @@ makeSignInRequest() async {
   Map<String, dynamic> user = jsonDecode(response.body);
 
   userToken = user['token'];
-  print('Token, ${user['token']}');
+  print('Signed in, with token, ${user['token']}');
 }

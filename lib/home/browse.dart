@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parcelo/colorsParcelo.dart';
 import 'package:parcelo/home/browseContent.dart';
-import 'package:parcelo/home/home.dart';
 import 'package:parcelo/whichService.dart';
 import '../argParcelo.dart';
 import '../cellHeight.dart';
@@ -21,6 +20,7 @@ class _BrowseState extends State<Browse> {
 
   @override
   Widget build(BuildContext context) {
+    print('building browse');
     isInCart = false;
     return ListView.builder(
     physics: NeverScrollableScrollPhysics(),
@@ -53,13 +53,6 @@ class _BrowseState extends State<Browse> {
                     child: CircularProgressIndicator(),
                   );
                 }
-                /*else if (snapshot.connectionState == ConnectionState.none) {
-                  return Container(height: 10, width: 10, color: Colors.white,);
-                } else if (snapshot.connectionState == ConnectionState.active) {
-                  return Container(height: 10, width: 10, color: Colors.white,);
-                } else if (snapshot.connectionState == ConnectionState.waiting){
-                  return Container(height: 10, width: 10, color: Colors.white,);
-                }*/
               },
             )
             

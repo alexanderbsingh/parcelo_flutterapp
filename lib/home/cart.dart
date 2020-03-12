@@ -26,6 +26,7 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     isInCart = true;
+    print('building the cart');
     return FutureBuilder(
       future: fetchCart("73c29a76-8124-4d6c-8417-7d95dec9ed5e"),
       builder: (context, snapshot) {
@@ -189,7 +190,7 @@ String calcTotal(List<Product2> products){
     try {
       total = total + products[n  -1].prices[0].price;
     } catch (e) {
-      print(e);
+      //print(e);
       break;
     }
   }

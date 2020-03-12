@@ -78,10 +78,10 @@ List<PriceStore> findPrices(List<dynamic> json) {
 
     for (var n = num; n >= 0; n--) {
       try {
-        print(PriceStore.fromJson(json[num - n]).toString() + ' prices');
+        //print(PriceStore.fromJson(json[num - n]).toString() + ' prices');
         prices.add(PriceStore.fromJson(json[num - n]));
       } catch (e) {
-        print(e);
+        //print(e);
         break;
       }
     }

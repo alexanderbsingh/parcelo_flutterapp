@@ -7,6 +7,6 @@ addToCart(String cartId, String productId) async {
   Map<String, String> data = {"productId": productId,};
 
   Response response = await post(url, body: json.encode(data), headers: {"Content-Type": "application/json", "Authorization": "Bearer " + userToken});
-  print(response.body);
+  //print(response.body);
 
 }

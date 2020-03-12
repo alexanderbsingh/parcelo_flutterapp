@@ -16,7 +16,7 @@ Future<List<Store>> fetchStores() async {
   Iterable list = responseJson;
   shops = list.map((shop) => Store.fromJson(shop)).toList();
 
-  print(shops.length.toString() + " shops loaded");
+  //print(shops.length.toString() + " shops loaded");
 
   return shops;
 }
@@ -32,7 +32,7 @@ Future<StoreFull> fetchStore(String storeID) async {
   Map storeMap = jsonDecode(response.body);
   store = StoreFull.fromJson(storeMap);
 
-  print(store.name.toString() + " loaded");
+  //print(store.name.toString() + " loaded");
 
   return store;
 }

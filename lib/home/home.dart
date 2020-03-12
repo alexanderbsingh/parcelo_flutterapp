@@ -24,9 +24,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
     
     _tabController = TabController(length: 2, vsync: this);
     _tabController.addListener(() {
-      setState(() {
-        
-      });
+      //setState(() {});
     });
   }
 
@@ -93,7 +91,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
                   Container(
                     height: 860,
-                    padding: EdgeInsets.only(left: 0, right: 0),
+                    //padding: EdgeInsets.only(left: 0, right: 0),
                     child: TabBarView(
                         key: tabKey,
                         controller: _tabController,

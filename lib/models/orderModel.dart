@@ -31,7 +31,7 @@ Map<String, dynamic> productsJson(List<OrderProduct> products) {
     try {
       products[n].toJson;
     } catch (e) {
-      print(e);
+      //print(e);
       break;
     }
   }

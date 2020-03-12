@@ -10,4 +10,4 @@ var userToken;
 
 var tabKey;
 
-var host = '192.168.43.2';
+var host = 'localhost';

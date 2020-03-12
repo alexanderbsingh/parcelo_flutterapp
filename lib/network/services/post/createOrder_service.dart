@@ -1,10 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart';
-import 'package:parcelo/home/cart.dart';
 import 'package:parcelo/models/cartModel.dart';
 import 'package:parcelo/models/orderModel.dart';
-import 'package:parcelo/models/price.dart';
-import 'package:parcelo/models/product.dart';
 import 'package:parcelo/models/product2_remove.dart';
 
 import '../../../globalVar.dart';
@@ -22,7 +19,7 @@ createOrder(CartModel cart) async {
  // Map<String, dynamic> data = order as Map<String, dynamic>;
 
   Response response = await post(url, body: json.encode(order.toJson()), headers: {"Content-Type": "application/json", "Authorization": "Bearer " + userToken});
-  print(response.body);
+  //print(response.body);
 
 }
 
@@ -34,7 +31,7 @@ List<OrderProduct> orderProducts(List<Product2> products) {
         OrderProduct product = OrderProduct(id: products[n-1].id, shopId: '1d1cfc2f-368c-4ec7-ad59-08ea47e27cb0', price: products[n-1].prices[0].price.toString());
         productsList.add(product);
 
-        print(products[n-1].name);
+        //print(products[n-1].name);
       } catch (e) {
         print(e.toString() + " create order service");
         break;

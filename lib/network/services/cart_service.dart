@@ -16,7 +16,7 @@ Future<CartModel> fetchCart(String cartSlug) async {
   Map cartMap = jsonDecode(response.body);
   cart = CartModel.fromJson(cartMap);
 
-  print("Cart id: " + cart.id.toString() + " loaded");
+  //print("Cart id: " + cart.id.toString() + " loaded");
   //print(cartMap.toString() + " loaded this json response");
 
   return cart;

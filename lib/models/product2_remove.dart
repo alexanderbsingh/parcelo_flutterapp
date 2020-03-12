@@ -29,14 +29,14 @@ List<PriceProduct2> findPrices2(List<dynamic> json) {
 
     for (var n = json.length; n >= 0; n--) {
       try {
-        print(PriceProduct2.fromJson(json[n -1]).toString() + ' prices');
+        //print(PriceProduct2.fromJson(json[n -1]).toString() + ' prices');
         pricesUnsorted.add(PriceProduct2.fromJson(json[n-1]));
       } catch (e) {
-        print(e.toString() + ' price error');
+        //print(e.toString() + ' price error');
         break;
       }
     }
-    print(pricesUnsorted.length.toString() + ' list of prices');
+    //print(pricesUnsorted.length.toString() + ' list of prices');
     List<PriceProduct2> pricesSorted = sortByPrice(pricesUnsorted);
 
     return pricesSorted;

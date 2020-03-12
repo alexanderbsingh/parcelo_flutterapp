@@ -9,6 +9,7 @@ import '../argParcelo.dart';
 import '../colorsParcelo.dart';
 
 Widget browseContent(BuildContext context, List data, String type){
+  //print('building browseContent');
   return ListView.builder(
     scrollDirection: Axis.horizontal,
     itemBuilder: (context, pos) {

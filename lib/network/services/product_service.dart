@@ -29,7 +29,7 @@ Future<ProductFull> fetchProduct(String id) async {
   Map productMap = jsonDecode(response.body);
   product = ProductFull.fromJson(productMap);
 
-  print(product.name.toString() + " loaded");
+  //print(product.name.toString() + " loaded");
 
   return product;
 }

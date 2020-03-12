@@ -28,7 +28,7 @@ List<Product2> findProducts(List<dynamic> json) {
       try {
         products.add(Product2.fromJson(json[n-1]));
       } catch (e) {
-        print(e);
+        //print(e);
         break;
       }
     }

@@ -13,14 +13,14 @@ removeItemFromCart(String productId) async {
   request.body = jsonEncode({'productId' : productId});
   final response = await request.send();
 
-  print(response.statusCode);
+  //print(response.statusCode);
 }
 
 emptyCart(CartModel cart) async {
 
   for (var n = cart.products.length; n >= 0; n--) {
     try {
-      print(cart.products[n -1].name);
+      //print(cart.products[n -1].name);
       await removeItemFromCart(cart.products[n-1].id);
     } catch (e) {
       print(e.toString() + " removeFromCart");

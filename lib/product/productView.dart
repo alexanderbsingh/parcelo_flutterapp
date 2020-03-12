@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:parcelo/customWidget/customExpanded.dart';
 import 'package:parcelo/globalVar.dart';
 import 'package:parcelo/models/price.dart';
 import 'package:parcelo/models/product.dart';
 import 'package:parcelo/network/services/post/addToCart_service.dart';
 import 'package:parcelo/network/services/product_service.dart';
-import 'package:parcelo/product/bottomBar.dart';
 import 'package:parcelo/product/productInfo.dart';
 import 'package:parcelo/product/productTop.dart';
 
@@ -54,7 +52,7 @@ class _ProductViewState extends State<ProductView> {
               return content(context, product, imgURL, strPrice);
             }
             else if (oldSnapshotProduct != null) {
-              print('oldSnapShotProduct');
+              //print('oldSnapShotProduct');
               ProductFull product = oldSnapshotProduct;
               if (price != null) {
                 strPrice = price.toString();
