@@ -6,6 +6,7 @@ import 'package:parcelo/network/services/post/addToCart_service.dart';
 import 'package:parcelo/network/services/product_service.dart';
 import 'package:parcelo/product/productInfo.dart';
 import 'package:parcelo/product/productTop.dart';
+import 'package:dropdown_banner/dropdown_banner.dart';
 
 import '../argParcelo.dart';
 import '../colorsParcelo.dart';
@@ -33,83 +34,88 @@ class _ProductViewState extends State<ProductView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    final navigatorKeyProductView = GlobalKey<NavigatorState>();
+
+    return DropdownBanner(
+      navigatorKey: navigatorKeyProductView,
+      child: Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
-      children: <Widget>[
-        FutureBuilder(
-          future: fetchProduct(productID),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              ProductFull product = snapshot.data;
-              oldSnapshotProduct = snapshot.data;
-              if (price != null) {
-                strPrice = price.toString();
-              } else {
-                strPrice = sortByPrice(product.prices)[0].price.toString();
-                imgURL = sortByPrice(product.prices)[0].store.logo.toString();
+        children: <Widget>[
+          FutureBuilder(
+            future: fetchProduct(productID),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                ProductFull product = snapshot.data;
+                oldSnapshotProduct = snapshot.data;
+                if (price != null) {
+                  strPrice = price.toString();
+                } else {
+                  strPrice = sortByPrice(product.prices)[0].price.toString();
+                  imgURL = sortByPrice(product.prices)[0].store.logo.toString();
+                }
+                return content(context, product, imgURL, strPrice);
               }
-              return content(context, product, imgURL, strPrice);
-            }
-            else if (oldSnapshotProduct != null) {
-              //print('oldSnapShotProduct');
-              ProductFull product = oldSnapshotProduct;
-              if (price != null) {
-                strPrice = price.toString();
-              } else {
-                strPrice = sortByPrice(product.prices)[0].price.toString();
-                imgURL = sortByPrice(product.prices)[0].store.logo.toString();
+              else if (oldSnapshotProduct != null) {
+                //print('oldSnapShotProduct');
+                ProductFull product = oldSnapshotProduct;
+                if (price != null) {
+                  strPrice = price.toString();
+                } else {
+                  strPrice = sortByPrice(product.prices)[0].price.toString();
+                  imgURL = sortByPrice(product.prices)[0].store.logo.toString();
+                }
+                return content(context, product, imgURL, strPrice);
+              } else if (snapshot.connectionState == ConnectionState.none) {
+                return Container(height: 10, width: 10, color: Colors.white,);
+              } else if (snapshot.connectionState == ConnectionState.active) {
+                return Container(height: 10, width: 10, color: Colors.white,);
+              } else if (snapshot.connectionState == ConnectionState.waiting){
+                return Container(height: 10, width: 10, color: Colors.white,);
               }
-              return content(context, product, imgURL, strPrice);
-            } else if (snapshot.connectionState == ConnectionState.none) {
-              return Container(height: 10, width: 10, color: Colors.white,);
-            } else if (snapshot.connectionState == ConnectionState.active) {
-              return Container(height: 10, width: 10, color: Colors.white,);
-            } else if (snapshot.connectionState == ConnectionState.waiting){
-              return Container(height: 10, width: 10, color: Colors.white,);
-            }
-          },
-        ),
-        Container(
-          height: MediaQuery.of(context).padding.top + 56,
-          child: AppBar(
-            backgroundColor: Colors.transparent,
-            brightness: Brightness.light,
-            elevation: 0,
-            actions: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(right: ArgParcelo.margin),
-                child: GestureDetector(
-                  onTap: () {
-                    print('pressed, save');
-                    isLiked = !isLiked;
-                    setState(() {});
-                  },
-                  child: Icon(
-                    isLiked ? Icons.favorite : Icons.favorite_border,                        
-                    size: 24,
-                    color: ColorsParcelo.PrimaryTextColor,
-                  )
+            },
+          ),
+          Container(
+            height: MediaQuery.of(context).padding.top + 56,
+            child: AppBar(
+              backgroundColor: Colors.transparent,
+              brightness: Brightness.light,
+              elevation: 0,
+              actions: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(right: ArgParcelo.margin),
+                  child: GestureDetector(
+                    onTap: () {
+                      print('pressed, save');
+                      isLiked = !isLiked;
+                      setState(() {});
+                    },
+                    child: Icon(
+                      isLiked ? Icons.favorite : Icons.favorite_border,                        
+                      size: 24,
+                      color: ColorsParcelo.PrimaryTextColor,
+                    )
+                  ),
                 ),
-              ),
-            ],
-            leading: GestureDetector(
-                  onTap: () {
-                    print('pressed, exit');
-                    oldSnapshotProduct = null;
-                    Navigator.pop(context);
-                  },
-                  child: Icon(
-                    Icons.clear,
-                    size: 24,
-                    color: ColorsParcelo.PrimaryTextColor,
-                  )
-                ),
+              ],
+              leading: GestureDetector(
+                    onTap: () {
+                      print('pressed, exit');
+                      oldSnapshotProduct = null;
+                      Navigator.pop(context);
+                    },
+                    child: Icon(
+                      Icons.clear,
+                      size: 24,
+                      color: ColorsParcelo.PrimaryTextColor,
+                    )
+                  ),
+            ),
+          ),
+          ],
           ),
         ),
-        ],
-        ),
-      );
+    );
   }
 }
 
@@ -174,9 +180,15 @@ Widget content(BuildContext context, ProductFull product, String imgURL, String 
              /*Expanded(
                child:*/ Container(
                width: 200,
-                 child: FlatButton(onPressed: (){
-                   print('pressed add to cart');
-                   addToCart('73c29a76-8124-4d6c-8417-7d95dec9ed5e', product.id);
+                 child: FlatButton(onPressed: () async{
+                  print('pressed add to cart');
+                  await addToCart('73c29a76-8124-4d6c-8417-7d95dec9ed5e', product.id);
+                  DropdownBanner.showBanner(
+                    text: 'La till ' + product.name + ' i varukorgen',
+                    color: ColorsParcelo.PrimaryColor,
+                    textStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)
+                    
+                  );
                  },
                    color: ColorsParcelo.PrimaryColor,
                    shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(22.0)),

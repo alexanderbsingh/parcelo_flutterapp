@@ -1,4 +1,6 @@
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:parcelo/cells/cartCell.dart';
 import 'package:parcelo/customWidget/customExpanded.dart';
@@ -12,13 +14,19 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../argParcelo.dart';
 import '../colorsParcelo.dart';
+import 'home.dart';
 
 class Cart extends StatefulWidget {
+  StreamController<CartModel> streamCartModel;
+  Cart({Key key, @required this.streamCartModel});
   @override
-  _CartState createState() => _CartState();
+  _CartState createState() => _CartState(streamCartModel: streamCartModel);
 }
 
 class _CartState extends State<Cart> {
+  StreamController<CartModel> streamCartModel;
+  _CartState({Key key, @required this.streamCartModel});
+
   final RefreshController _refreshController = RefreshController();
 
   CartModel cartModel;
@@ -34,6 +42,8 @@ class _CartState extends State<Cart> {
           if (snapshot.data != null) {
             oldSnapshotCart = snapshot.data;
             cartModel = snapshot.data as CartModel;
+            streamCartModel.add(cartModel);
+            //heightOfHome = (cartModel.products.length * 122.0);
             return Stack(
                 alignment: Alignment.bottomLeft,
                 children: <Widget>[
@@ -45,94 +55,95 @@ class _CartState extends State<Cart> {
                       setState(() {});
                     },
                       child: ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, pos) {
                         return cartCell(cartModel.products[pos]);
                       },
                       itemCount: cartModel.products.length,
                     ),
                   ),
-                  Container(
-                    padding: EdgeInsets.all(ArgParcelo.margin),
-                    height: MediaQuery.of(context).padding.bottom != 0 ? 60 + MediaQuery.of(context).padding.bottom : 130,
-                    width: MediaQuery.of(context).size.width,
-                    alignment: Alignment.topLeft,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: [BoxShadow(
-                          color: Colors.black12,
-                          blurRadius: 17.0,
-                        ),]
-                    ),
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.only(bottom: ArgParcelo.smallMargin),
-                          height: 40,
-                          child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: <Widget>[
-                                Text(
-                                  'Totalt belopp',
-                                  style: TextStyle(
-                                      color: ColorsParcelo.PrimaryTextColor,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: ArgParcelo.header
-                                  ),
-                                ),
+                  // Container(
+                  //   padding: EdgeInsets.all(ArgParcelo.margin),
+                  //   height: MediaQuery.of(context).padding.bottom != 0 ? 60 + MediaQuery.of(context).padding.bottom : 130,
+                  //   width: MediaQuery.of(context).size.width,
+                  //   alignment: Alignment.topLeft,
+                  //   decoration: BoxDecoration(
+                  //       color: Colors.white,
+                  //       boxShadow: [BoxShadow(
+                  //         color: Colors.black12,
+                  //         blurRadius: 17.0,
+                  //       ),]
+                  //   ),
+                  //   child: Column(
+                  //     children: <Widget>[
+                  //       Container(
+                  //         padding: EdgeInsets.only(bottom: ArgParcelo.smallMargin),
+                  //         height: 40,
+                  //         child: Row(
+                  //             crossAxisAlignment: CrossAxisAlignment.end,
+                  //             children: <Widget>[
+                  //               Text(
+                  //                 'Totalt belopp',
+                  //                 style: TextStyle(
+                  //                     color: ColorsParcelo.PrimaryTextColor,
+                  //                     fontWeight: FontWeight.bold,
+                  //                     fontSize: ArgParcelo.header
+                  //                 ),
+                  //               ),
 
-                                Padding(
-                                  padding: EdgeInsets.only(left: 5),
-                                  child: Text(
-                                    'Inkl. moms',
-                                    style: TextStyle(
-                                        color: ColorsParcelo.SecondaryTextColor,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: ArgParcelo.smallDescription
-                                    ),
-                                  ),
-                                ),
+                  //               Padding(
+                  //                 padding: EdgeInsets.only(left: 5),
+                  //                 child: Text(
+                  //                   'Inkl. moms',
+                  //                   style: TextStyle(
+                  //                       color: ColorsParcelo.SecondaryTextColor,
+                  //                       fontWeight: FontWeight.w400,
+                  //                       fontSize: ArgParcelo.smallDescription
+                  //                   ),
+                  //                 ),
+                  //               ),
 
-                                customExpanded(),
+                  //               customExpanded(),
 
-                                Text(
-                                  calcTotal(cartModel.products),
-                                  style: TextStyle(
-                                      color: ColorsParcelo.PrimaryTextColor,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: ArgParcelo.header
-                                  ),
-                                ),
-                              ]
-                          ),
-                        ),
+                  //               Text(
+                  //                 calcTotal(cartModel.products),
+                  //                 style: TextStyle(
+                  //                     color: ColorsParcelo.PrimaryTextColor,
+                  //                     fontWeight: FontWeight.bold,
+                  //                     fontSize: ArgParcelo.header
+                  //                 ),
+                  //               ),
+                  //             ]
+                  //         ),
+                  //       ),
 
-                        FlatButton(onPressed: (){
-                          print('pressed order');
-                          if (cartModel.products.length != 0) {
-                            _showOrderDialog(context, cartModel);
-                          } else {
-                            _showNoOrderDialog(context);
-                          }
-                        },
-                          color: ColorsParcelo.PrimaryColor,
-                          shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(22.0)),
-                          child: Container(
-                            alignment: Alignment.center,
-                            height: 44,
-                            width: MediaQuery.of(context).size.width - ArgParcelo.margin *2,
-                            child: Text(
-                              'Beställ',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 16
-                              )
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  )
+                  //       FlatButton(onPressed: (){
+                  //         print('pressed order');
+                  //         if (cartModel.products.length != 0) {
+                  //           _showOrderDialog(context, cartModel);
+                  //         } else {
+                  //           _showNoOrderDialog(context);
+                  //         }
+                  //       },
+                  //         color: ColorsParcelo.PrimaryColor,
+                  //         shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(22.0)),
+                  //         child: Container(
+                  //           alignment: Alignment.center,
+                  //           height: 44,
+                  //           width: MediaQuery.of(context).size.width - ArgParcelo.margin *2,
+                  //           child: Text(
+                  //             'Beställ',
+                  //             style: TextStyle(
+                  //                 color: Colors.white,
+                  //                 fontWeight: FontWeight.w600,
+                  //                 fontSize: 16
+                  //             )
+                  //           ),
+                  //         ),
+                  //       )
+                  //     ],
+                  //   ),
+                  // )
             ]);
 
           } else {
@@ -149,74 +160,12 @@ class _CartState extends State<Cart> {
     );
   }
 
-  _showOrderDialog(BuildContext context, CartModel cartModel) {
-    // flutter defined function
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        // return object of type Dialog
-        return AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(ArgParcelo.cornerRadius)),
-          title: new Text("Beställ"),
-          content: new Text("Beställ " + cartModel.products.length.toString() + " varor för totalt: " + calcTotal(cartModel.products) + "."),
-          actions: <Widget>[
-            // usually buttons at the bottom of the dialog
-            new FlatButton(
-              child: new Text("Beställ",
-              style: TextStyle(
-                color: ColorsParcelo.PrimaryColor
-              ),),
-              onPressed: () async {
-                await createOrder(cartModel);
-                await emptyCart(cartModel);
-                Navigator.of(context).pop();
-                setState(() {
-                  
-                });
-                
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-}
-
-String calcTotal(List<Product2> products){
-  int total = 0;
-
-  for (var n = products.length; n >= 0; n--) {
-    try {
-      total = total + products[n  -1].prices[0].price;
-    } catch (e) {
-      //print(e);
-      break;
-    }
-  }
-  return total.toString() + ' kr';
+  
 }
 
 
-  _showNoOrderDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(ArgParcelo.cornerRadius)),
-          title: new Text("Kundvagnen är tom  : ("),
-          content: new Text("Din kundvagn är förtillfället tom. Upptäck nya spännande varor bland våra kategorier."),
-          actions: <Widget>[
-            new FlatButton(
-              child: new Text("ok"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
+
+
+  
 
 

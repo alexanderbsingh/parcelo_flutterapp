@@ -22,6 +22,7 @@ class _BrowseState extends State<Browse> {
   Widget build(BuildContext context) {
     print('building browse');
     isInCart = false;
+    //heightOfHome = 800;
     return ListView.builder(
     physics: NeverScrollableScrollPhysics(),
     itemBuilder: (context, pos) {

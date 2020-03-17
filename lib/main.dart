@@ -6,15 +6,14 @@ import 'package:parcelo/profile/profile.dart';
 import 'package:parcelo/search/search.dart';
 
 import 'home/home.dart';
+import 'home/newHome.dart';
 
-void main(){
+void main() {
   runApp(MaterialApp(
-    title: 'Parcelo',
+      title: 'Parcelo',
       theme: ThemeData(fontFamily: 'Asap'),
       debugShowCheckedModeBanner: false,
-      
-      home: MainView()
-  ));
+      home: MainView()));
 }
 
 class MainView extends StatefulWidget {
@@ -22,7 +21,8 @@ class MainView extends StatefulWidget {
   MainViewState createState() => MainViewState();
 }
 
-class MainViewState extends State<MainView> with SingleTickerProviderStateMixin {
+class MainViewState extends State<MainView>
+    with SingleTickerProviderStateMixin {
   static TabController tabController;
   static PageController pageController;
 
@@ -42,9 +42,7 @@ class MainViewState extends State<MainView> with SingleTickerProviderStateMixin 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: Colors.white,
-        statusBarBrightness: Brightness.dark
-    ));
+        statusBarColor: Colors.white, statusBarBrightness: Brightness.dark));
 
     makeSignInRequest();
     return Scaffold(
@@ -56,20 +54,16 @@ class MainViewState extends State<MainView> with SingleTickerProviderStateMixin 
           elevation: 0,
         ),
         body: AnnotatedRegion<SystemUiOverlayStyle>(
-         value: SystemUiOverlayStyle.dark,
-         child: PageView(
-            controller: pageController,
-            scrollDirection: Axis.horizontal,
-            children: <Widget>[
-              Profile(),
-              Home(),
-              Search()
-            ],
-          )
-        )
-        );
+            value: SystemUiOverlayStyle.dark,
+            child: PageView(
+              controller: pageController,
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                Profile(),
+                NewHome(),
+                //Home(),
+                Search()
+              ],
+            )));
   }
 }
-
-
-
