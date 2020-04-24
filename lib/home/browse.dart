@@ -23,46 +23,49 @@ class _BrowseState extends State<Browse> {
     print('building browse');
     isInCart = false;
     //heightOfHome = 800;
-    return ListView.builder(
-    physics: NeverScrollableScrollPhysics(),
-    itemBuilder: (context, pos) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          if(typeHeader[pos].isNotEmpty) Padding(
-            padding: const EdgeInsets.only(left: 15, top: 10),
-            child: Text(
-              typeHeader[pos],
-              style: TextStyle(
-                color: ColorsParcelo.PrimaryTextColor,
-                fontWeight: FontWeight.w600,
-                fontSize: ArgParcelo.subHeader
+    return Visibility(
+      visible: !isInCart,
+      child: ListView.builder(
+      physics: NeverScrollableScrollPhysics(),
+      itemBuilder: (context, pos) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            if(typeHeader[pos].isNotEmpty) Padding(
+              padding: const EdgeInsets.only(left: 15, top: 10),
+              child: Text(
+                typeHeader[pos],
+                style: TextStyle(
+                  color: ColorsParcelo.PrimaryTextColor,
+                  fontWeight: FontWeight.w600,
+                  fontSize: ArgParcelo.subHeader
+                ),
               ),
             ),
-          ),
 
-          Container(
-            height: cellHeight(typeList[pos]),
-            child: FutureBuilder(
-              future: whichService(typeList[pos]),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
-                  oldSnapshotBrowse = snapshot.data;
-                  return browseContent(context, snapshot.data, typeList[pos]);
-                } else {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-              },
-            )
-            
-            
-          ),
-        ],
-      );
-    },
-    itemCount: typeList.length,
-      );
+            Container(
+              height: cellHeight(typeList[pos]),
+              child: FutureBuilder(
+                future: whichService(typeList[pos]),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    oldSnapshotBrowse = snapshot.data;
+                    return browseContent(context, snapshot.data, typeList[pos]);
+                  } else {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                },
+              )
+
+
+            ),
+          ],
+        );
+      },
+      itemCount: typeList.length,
+        ),
+    );
   }
 }

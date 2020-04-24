@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:parcelo/colorsParcelo.dart';
 import 'package:parcelo/network/services/post/signIn_service.dart';
 
 import 'package:parcelo/profile/profile.dart';
 import 'package:parcelo/search/search.dart';
+import 'package:parcelo/signIn/firstSignInView.dart';
 
 import 'home/home.dart';
 import 'home/newHome.dart';
@@ -48,11 +50,6 @@ class MainViewState extends State<MainView>
     return Scaffold(
         backgroundColor: Colors.white,
         primary: false,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          brightness: Brightness.light,
-          elevation: 0,
-        ),
         body: AnnotatedRegion<SystemUiOverlayStyle>(
             value: SystemUiOverlayStyle.dark,
             child: PageView(
@@ -61,7 +58,7 @@ class MainViewState extends State<MainView>
               children: <Widget>[
                 Profile(),
                 NewHome(),
-                //Home(),
+                FirstSignInView(),
                 Search()
               ],
             )));

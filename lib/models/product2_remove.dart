@@ -25,7 +25,6 @@ class Product2 {
 
 List<PriceProduct2> findPrices2(List<dynamic> json) {
     List<PriceProduct2> pricesUnsorted = new List();
-    var num = 10;
 
     for (var n = json.length; n >= 0; n--) {
       try {

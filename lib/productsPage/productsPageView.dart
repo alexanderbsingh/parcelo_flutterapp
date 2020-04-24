@@ -68,17 +68,13 @@ class _ProductsPageViewState extends State<ProductsPageView> {
                   },
                   itemCount: products.length, 
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3, 
+                    crossAxisCount: 2,
                     crossAxisSpacing: 10, 
                     mainAxisSpacing: 0,
                     childAspectRatio: (61/100)
                     )
                 );
-            } else if (snapshot.connectionState == ConnectionState.none) {
-              return Container(height: 10, width: 10, color: Colors.white,);
-            } else if (snapshot.connectionState == ConnectionState.active) {
-              return Container(height: 10, width: 10, color: Colors.white,);
-            } else if (snapshot.connectionState == ConnectionState.waiting){
+            } else {
               return Container(height: 10, width: 10, color: Colors.white,);
             }
           }

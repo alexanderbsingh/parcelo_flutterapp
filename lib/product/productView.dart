@@ -14,7 +14,7 @@ import '../colorsParcelo.dart';
 class ProductView extends StatefulWidget {
   final String productID;
   final int price;
-  String imgURL;
+  final String imgURL;
   
   ProductView({@required this.productID, this.price, this.imgURL});
 

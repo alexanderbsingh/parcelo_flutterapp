@@ -12,6 +12,12 @@ class Search extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
+        primary: false,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          brightness: Brightness.light,
+          elevation: 0,
+        ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,

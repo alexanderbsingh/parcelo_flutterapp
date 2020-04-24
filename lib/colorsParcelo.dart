@@ -2,7 +2,7 @@ import 'dart:ui';
 
 class ColorsParcelo {
   static const PrimaryColor =  Color(0xFF32E37F);
-  static const PrimaryColorLight = Color(0x2013DE6B);
+  static const PrimaryColorLight = Color(0xFFE8FCF1);
   static const AccentColor =  Color(0xFFFF8E7E);
   static const LightGreyColor =  Color(0xFFEEEEEE);
   static const DarkGreyColor =  Color(0xFFD8D8D8);

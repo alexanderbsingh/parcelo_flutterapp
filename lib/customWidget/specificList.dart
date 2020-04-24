@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:parcelo/argParcelo.dart';
+import 'package:parcelo/customAnimation/EnterExitRoute.dart';
 import 'package:parcelo/customWidget/customExpanded.dart';
-import 'package:parcelo/productsPage/productsPageView.dart';
+import 'package:parcelo/profile/favourites.dart';
+import 'package:parcelo/profile/profile.dart';
 
 import '../colorsParcelo.dart';
 
@@ -19,6 +21,9 @@ Widget specificList(BuildContext context, String title, String description,  boo
   return GestureDetector(
     onTap: () {
       print('pressed, ' + title);
+      if (toWhere == 'favourites') {
+        Navigator.push(context, EnterExitRoute(enterPage: Favourites(), exitPage: Profile()));
+      }
     },
     child: Padding(
       padding: const EdgeInsets.only(top: 8, bottom: 8),

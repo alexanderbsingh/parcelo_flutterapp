@@ -5,6 +5,8 @@ class ArgParcelo {
 
 
   static const double cornerRadius = 5;
+  static const double bigCornerRadius = 10;
+
 
   //Text, app
   static const double header = 17;
