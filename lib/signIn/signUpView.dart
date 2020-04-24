@@ -38,8 +38,6 @@ class _SignUpViewState extends State<SignUpView> with TickerProviderStateMixin{
   AnimationController _midAnimationController;
   Animation<Offset> _slideOutAnimation;
 
-  AnimationController _passwordAnimationController;
-  Animation<Offset> _slideDownAnimation;
   bool is2PasswordVisible = false;
 
   final inputController = TextEditingController(); 
@@ -62,9 +60,6 @@ class _SignUpViewState extends State<SignUpView> with TickerProviderStateMixin{
       });
     });
 
-    _passwordAnimationController = AnimationController(duration: const Duration(milliseconds: 2000), vsync: this);
-    _slideDownAnimation = Tween<Offset>(begin: Offset.zero, end: const Offset(0, 1),)
-    .animate(CurvedAnimation(parent: _passwordAnimationController,curve: Curves.elasticOut));
   }
 
    bool isNext(String text) {
@@ -90,6 +85,7 @@ class _SignUpViewState extends State<SignUpView> with TickerProviderStateMixin{
   void changeInfo() {
     print(posProgress);
     isError = false;
+    isError2 = false;
     inputController.clear();
 
     if (posProgress == 0) {
@@ -378,53 +374,50 @@ class _SignUpViewState extends State<SignUpView> with TickerProviderStateMixin{
 
                              Padding(
                                padding: EdgeInsets.only(top: ArgParcelo.margin),
-                               child: SlideTransition(
-                                position: _slideDownAnimation,
-                                child:AnimatedOpacity(
-                                  opacity: is2PasswordVisible ? 1.0 : 0.0,
-                                  duration: Duration(milliseconds: 500),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Text(
-                                        'Upprepa lösenord'
-                                      ),  
+                               child: AnimatedOpacity(
+                                 opacity: is2PasswordVisible ? 1.0 : 0.0,
+                                 duration: Duration(milliseconds: 500),
+                                 child: Column(
+                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                   children: <Widget>[
+                                     Text(
+                                       'Upprepa lösenord'
+                                     ),  
 
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 5),
-                                        child: Theme(
-                                          data: ThemeData(
-                                            primaryColor: ColorsParcelo.PrimaryTextColor,
-                                            accentColor: ColorsParcelo.AccentColor,
-                                            hintColor: ColorsParcelo.SecondaryTextColor,
-                                            cursorColor: ColorsParcelo.PrimaryColor,
-                                            cupertinoOverrideTheme: CupertinoThemeData(
-                                              primaryColor: ColorsParcelo.PrimaryColor,
-                                            ),
-                                          ),
-                                          child: TextField(
-                                            controller: passwordInputController,
-                                            textInputAction: TextInputAction.search,onSubmitted: (value){
-                                              print("pressed enter");
-                                              forward();
-                                            },
-                                            decoration: InputDecoration(
-                                              errorText: isError2 ? 'Lösenorden matchar ej' : null,
-                                              filled: true,
-                                              fillColor: ColorsParcelo.LightGreyColor,
-                                              labelText: 'Lösenord', 
-                                              focusedBorder: UnderlineInputBorder(
-                                                borderSide: BorderSide(color: ColorsParcelo.PrimaryColor),
-                                              ),  
-                                              
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                            ),
+                                     Padding(
+                                       padding: EdgeInsets.only(top: 5),
+                                       child: Theme(
+                                         data: ThemeData(
+                                           primaryColor: ColorsParcelo.PrimaryTextColor,
+                                           accentColor: ColorsParcelo.AccentColor,
+                                           hintColor: ColorsParcelo.SecondaryTextColor,
+                                           cursorColor: ColorsParcelo.PrimaryColor,
+                                           cupertinoOverrideTheme: CupertinoThemeData(
+                                             primaryColor: ColorsParcelo.PrimaryColor,
+                                           ),
+                                         ),
+                                         child: TextField(
+                                           controller: passwordInputController,
+                                           textInputAction: TextInputAction.search,onSubmitted: (value){
+                                             print("pressed enter");
+                                             forward();
+                                           },
+                                           decoration: InputDecoration(
+                                             errorText: isError2 ? 'Lösenorden matchar ej' : null,
+                                             filled: true,
+                                             fillColor: ColorsParcelo.LightGreyColor,
+                                             labelText: 'Lösenord', 
+                                             focusedBorder: UnderlineInputBorder(
+                                               borderSide: BorderSide(color: ColorsParcelo.PrimaryColor),
+                                             ),  
+                                             
+                                           ),
+                                         ),
+                                       ),
+                                     ),
+                                   ],
+                                 ),
+                               ),
                              )
                           ]
                         ),
